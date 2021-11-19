@@ -35,12 +35,6 @@
       "env": {
         "node": true
       }
-    },
-    {
-      "files": [],
-      "rules": {
-        "@typescript-eslint/no-explicit-any": "off"
-      }
     }
   ]
 }
