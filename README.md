@@ -1,5 +1,9 @@
 # Lit Scaffold
 
+<p align="center">
+  <img src="./src/asset/svg/lit.svg" alt="Vue skeleton" style="width: 70%"/>
+</p>
+
 ## Installation
 
 - `npm install`
