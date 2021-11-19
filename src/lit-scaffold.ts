@@ -1,4 +1,4 @@
-import { html, css, LitElement } from 'lit'
+import {html, css, LitElement} from 'lit';
 
 export class LitScaffold extends LitElement {
   static get styles() {
@@ -9,14 +9,12 @@ export class LitScaffold extends LitElement {
         max-width: 60%;
         margin: 0 auto;
       }
-    `
+    `;
   }
 
   render() {
-    return html`
-      <h1>Lit Scaffold</h1>
-    `
+    return html`<h1>Lit Scaffold</h1>`;
   }
 }
 
-window.customElements.define('lit-scaffold', LitScaffold)
+window.customElements.define('lit-scaffold', LitScaffold);
