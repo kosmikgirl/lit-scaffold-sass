@@ -12,7 +12,7 @@ export class LitScaffold extends LitElement {
     `;
   }
 
-  render() {
+  protected render() {
     return html`<h1>Lit Scaffold</h1>`;
   }
 }
