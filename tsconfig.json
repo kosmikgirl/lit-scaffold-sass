@@ -3,7 +3,7 @@
   "compilerOptions": {
     "rootDir": ".",
     "outDir": "build",
-    "experimentalDecorators": true
+    "lib": ["es5", "es6", "dom"]
   },
   "include": ["src/**/*.ts", "test/**/*.ts"]
 }

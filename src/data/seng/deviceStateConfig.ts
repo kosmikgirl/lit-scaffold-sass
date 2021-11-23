@@ -7,9 +7,9 @@ export enum DeviceState {
 }
 
 export const mediaQueries = {
-  TABLET_PORTRAIT: `(min-width: 768px)`,
-  TABLET_LANDSCAPE: `(min-width: 1024px)`,
-  DESKTOP_MIN: `(min-width: 1200px)`,
-  DESKTOP_MID: `(min-width: 1600px)`,
-  DESKTOP_MAX: `(min-width: 1920px)`,
+  TABLET_PORTRAIT: '(min-width: 768px)',
+  TABLET_LANDSCAPE: '(min-width: 1024px)',
+  DESKTOP_MIN: '(min-width: 1200px)',
+  DESKTOP_MID: '(min-width: 1600px)',
+  DESKTOP_MAX: '(min-width: 1920px)',
 };

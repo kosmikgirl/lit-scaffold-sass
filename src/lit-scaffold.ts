@@ -1,7 +1,5 @@
 import {html, css, LitElement} from 'lit';
-import {customElement} from 'lit/decorators.js';
 
-@customElement('lit-scaffold')
 export class LitScaffold extends LitElement {
   static get styles() {
     return css`
@@ -14,7 +12,9 @@ export class LitScaffold extends LitElement {
     `;
   }
 
-  protected render() {
+  render() {
     return html`<h1>Lit Scaffold</h1>`;
   }
 }
+
+window.customElements.define('lit-scaffold', LitScaffold);
