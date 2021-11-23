@@ -1,13 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { PayloadAction } from '@reduxjs/toolkit/dist/createAction';
 
-type AppState = {
+export type AppState = {
   isInitialized: boolean;
-}
+};
 
 export const appSlice = createSlice({
   name: 'app',
-  initialState: <AppState> {
+  initialState: <AppState>{
     isInitialized: false,
   },
   reducers: {
