@@ -14,7 +14,8 @@
     "lint": "npm run lint:lit-analyzer && npm run lint:eslint",
     "lint:eslint": "eslint 'src/**/*.{js,ts}'",
     "lint:lit-analyzer": "lit-analyzer",
-    "format": "prettier \"**/*.{cjs,html,js,json,md,ts}\" --ignore-path ./.eslintignore --write"
+    "format": "prettier \"**/*.{cjs,html,js,json,md,ts}\" --ignore-path ./.eslintignore --write",
+    "plop": "plop"
   },
   "dependencies": {
     "lit": "^2.0.0",
@@ -28,6 +29,7 @@
     "@web/rollup-plugin-html": "^1.10.1",
     "eslint": "^8.2.0",
     "lit-analyzer": "^0.0.6",
+    "plop": "^2.1.0",
     "prettier": "^2.4.1",
     "rollup": "^2.60.0",
     "rollup-plugin-minify-html-literals": "^1.2.6",
