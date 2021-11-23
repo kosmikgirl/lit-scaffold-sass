@@ -1,6 +1,10 @@
-import {html, css, LitElement} from 'lit';
+import { html, css, LitElement } from 'lit';
+import { property } from 'lit/decorators.js';
+import { connect } from 'pwa-helpers';
+import store from './store/store';
+import { AppState, setIsInitialized } from './store/module/app';
 
-export class LitScaffold extends LitElement {
+export class LitScaffold extends connect(store)(LitElement) {
   static get styles() {
     return css`
       :host {
@@ -12,7 +16,20 @@ export class LitScaffold extends LitElement {
     `;
   }
 
+  @property({ type: Boolean })
+  isInitialized = false;
+
+  stateChanged(state: { app: AppState }) {
+    this.isInitialized = state.app.isInitialized;
+  }
+
+  firstUpdated() {
+    store.dispatch(setIsInitialized(true));
+  }
+
   render() {
+    if (!this.isInitialized) return html`<h1>Loading...</h1>`;
+
     return html`<h1>Lit Scaffold</h1>`;
   }
 }
