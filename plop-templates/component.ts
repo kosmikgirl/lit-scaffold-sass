@@ -1,6 +1,8 @@
 import {html, css, LitElement} from 'lit';
+import {customElement} from 'lit/decorators.js';
 
-export class LitScaffold extends LitElement {
+@customElement('{{kebabCase name}}')
+export class {{pascalCase name}} extends LitElement {
   static get styles() {
     return css`
       :host {
@@ -13,5 +15,3 @@ export class LitScaffold extends LitElement {
     return html`<h2>{{sentenceCase name}} component</h2>`;
   }
 }
-
-window.customElements.define('{{dashCase name}}', LitScaffold);
