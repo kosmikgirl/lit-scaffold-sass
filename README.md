@@ -9,7 +9,7 @@
 
 - `npm run plop` generate empty component file.
 - `npm run build` build app for deployment.
-- `npm run lint` lint app with gts linter.
+- `npm run lint` lint app with all linters.
 - `npm run lint:eslint` lint app with only esLint.
 - `npm run lint:lit-analyzer` to lint app with only lit-analyzer.
 - `npm run format` to format app with prettier.

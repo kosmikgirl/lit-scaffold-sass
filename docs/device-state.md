@@ -14,7 +14,7 @@ The browsers breakpoint tracking is handled by [seng device state tracker](https
 import DeviceStateTracker, {DeviceStateEvent} from 'seng-device-state-tracker';
 import {mediaQueries, DeviceState} from './data/seng/deviceStateConfig';
 
-// initaillize deviceStateTracker
+// initialize deviceStateTracker
 const deviceStateTracker: DeviceStateTracker = new DeviceStateTracker({
   mediaQueries,
   deviceState: DeviceState,
@@ -26,8 +26,6 @@ export class LitScaffold extends LitElement {
     super.connectedCallback();
     deviceStateTracker.addEventListener(DeviceStateEvent.STATE_UPDATE, () => {
       const {state} = deviceStateTracker.currentDeviceState;
-
-      console.log(state);
 
       if (state === DeviceState.TABLET_PORTRAIT) {
         // do something at this breakpoint
