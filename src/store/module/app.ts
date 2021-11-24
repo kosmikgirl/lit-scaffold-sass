@@ -1,5 +1,5 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { PayloadAction } from '@reduxjs/toolkit/dist/createAction';
+import {createSlice} from '@reduxjs/toolkit';
+import {PayloadAction} from '@reduxjs/toolkit/dist/createAction';
 
 export type AppState = {
   isInitialized: boolean;
@@ -17,6 +17,6 @@ export const appSlice = createSlice({
   },
 });
 
-export const { setIsInitialized } = appSlice.actions;
+export const {setIsInitialized} = appSlice.actions;
 
 export default appSlice.reducer;
