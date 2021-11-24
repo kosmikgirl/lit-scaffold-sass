@@ -1,8 +1,10 @@
 import { html, css, LitElement } from 'lit';
-import { property } from 'lit/decorators.js';
+import { state } from 'lit/decorators.js';
 import { connect } from 'pwa-helpers';
 import store from './store/store';
 import { AppState, setIsInitialized } from './store/module/app';
+import './component/router-link';
+import './component/router-element';
 
 export class LitScaffold extends connect(store)(LitElement) {
   static get styles() {
@@ -16,21 +18,30 @@ export class LitScaffold extends connect(store)(LitElement) {
     `;
   }
 
-  @property({ type: Boolean })
-  isInitialized = false;
+  @state()
+  private isInitialized = false;
 
   stateChanged(state: { app: AppState }) {
     this.isInitialized = state.app.isInitialized;
   }
 
-  firstUpdated() {
+  connectedCallback() {
+    super.connectedCallback();
+
     store.dispatch(setIsInitialized(true));
   }
 
   render() {
     if (!this.isInitialized) return html`<h1>Loading...</h1>`;
 
-    return html`<h1>Lit Scaffold</h1>`;
+    return html`
+      <nav>
+        <router-link to=''>Home</router-link>
+        <router-link to='about/demo'>About</router-link>
+      </nav>
+      <h1>Lit Scaffold</h1>
+      <router-element></router-element>
+    `;
   }
 }
 
