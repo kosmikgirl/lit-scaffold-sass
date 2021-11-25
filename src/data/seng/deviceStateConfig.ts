@@ -1,15 +1,17 @@
 export enum DeviceState {
-  TABLET_PORTRAIT = 0,
-  TABLET_LANDSCAPE = 1,
-  DESKTOP_MIN = 2,
-  DESKTOP_MID = 3,
-  DESKTOP_MAX = 4,
+  SMALL = 0,
+  MEDIUM = 1,
+  LARGE = 2,
+  XLARGE = 3,
+  XXLARGE = 4,
+  XXXLARGE = 5,
 }
 
 export const mediaQueries = {
-  TABLET_PORTRAIT: '(min-width: 768px)',
-  TABLET_LANDSCAPE: '(min-width: 1024px)',
-  DESKTOP_MIN: '(min-width: 1200px)',
-  DESKTOP_MID: '(min-width: 1600px)',
-  DESKTOP_MAX: '(min-width: 1920px)',
+  SMALL: '(min-width: 480px)',
+  MEDIUM: '(min-width: 768px)',
+  LARGE: '(min-width: 1024px)',
+  XLARGE: '(min-width: 1200px)',
+  XXLARGE: '(min-width: 1600px)',
+  XXXLARGE: '(min-width: 1920px)',
 };
