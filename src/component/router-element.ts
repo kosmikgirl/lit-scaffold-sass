@@ -1,5 +1,5 @@
 import { LitElement } from 'lit';
-import { html, literal } from 'lit/static-html.js';
+import { html } from 'lit/static-html.js';
 import { customElement, state } from 'lit/decorators.js';
 import { Match } from 'navigo';
 import router from '../router/router';
@@ -14,21 +14,16 @@ export default class RouterElement extends LitElement {
     props: {},
   };
 
-  constructor() {
-    super();
-
-    this.changeRoute = this.changeRoute.bind(this);
-    this.notFound = this.notFound.bind(this);
-  }
-
   connectedCallback(): void {
     super.connectedCallback();
 
     routes.forEach(route => {
-      console.debug('[router-element]', route.path);
-      router.on(route.path, this.changeRoute);
+      router.on({ [route.path]: {
+        as: route.name,
+        uses: (match: Match) => this.changeRoute(match),
+      }});
     });
-    router.notFound(this.notFound);
+    router.notFound(() => this.notFound());
     router.resolve();
   }
 
@@ -40,28 +35,24 @@ export default class RouterElement extends LitElement {
     });
   }
 
-  changeRoute(matchedRoute: Match | undefined): void {
-    console.debug('[router-element] changeRoute', matchedRoute);
-    const newRoute = routes.find(route => route.path === matchedRoute?.route?.path);
+  changeRoute(matchedRoute: Match): void {
+    const newRoute = routes.find(route => route.name === matchedRoute.route.name);
 
     if (!newRoute) return this.notFound();
 
     this.activeRoute = {
       tag: newRoute.tag,
-      props: matchedRoute?.data|| {},
+      props: matchedRoute.data || {},
     };
   }
 
   notFound(): void {
-    this.activeRoute = { tag: notFound.tag };
+    this.activeRoute = { tag: notFound.tag, props: {} };
   }
 
   render() {
     const { tag, props } = this.activeRoute;
 
-    console.debug('[router-element] render', this.activeRoute.props);
-    return html`
-    <${tag} props=${props}></${tag}>
-`;
+    return html`<${tag} .routeProps=${props}></${tag}>`;
   }
 }
