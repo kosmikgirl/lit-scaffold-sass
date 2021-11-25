@@ -30,3 +30,4 @@
 ## Documentation
 
 - [Device State Management](./docs/device-state.md)
+- [Adding SASS to a Project](./docs/sass.md)
