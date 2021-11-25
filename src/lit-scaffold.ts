@@ -5,6 +5,7 @@ import store from './store/store';
 import { AppState, setIsInitialized } from './store/module/app';
 import './component/router-link';
 import './component/router-element';
+import {RouteNames} from './router/routes';
 
 export class LitScaffold extends connect(store)(LitElement) {
   static get styles() {
@@ -37,7 +38,10 @@ export class LitScaffold extends connect(store)(LitElement) {
     return html`
       <nav>
         <router-link to=''>Home</router-link>
-        <router-link to='about/demo'>About</router-link>
+        <router-link .to=${{ name: RouteNames.ABOUT, params: { name: 'demo' }}}>
+          About
+        </router-link>
+        <router-link to="xyz">Not found</router-link>
       </nav>
       <h1>Lit Scaffold</h1>
       <router-element></router-element>
