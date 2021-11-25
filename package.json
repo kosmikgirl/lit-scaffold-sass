@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "vite",
     "build": "rollup -c",
-    "lint": "eslint 'src/**/*.{js,ts}' && lit-analyzer",
+    "lint": "run-s lint:*",
     "lint:eslint": "eslint 'src/**/*.{js,ts}'",
     "lint:lit-analyzer": "lit-analyzer",
     "format": "prettier \"**/*.{cjs,html,js,json,md,ts}\" --ignore-path ./.eslintignore --write",
@@ -28,6 +28,7 @@
     "eslint-plugin-prettier": "^4.0.0",
     "gts": "^3.1.0",
     "lit-analyzer": "^1.2.1",
+    "npm-run-all": "^4.1.5",
     "plop": "^2.1.0",
     "prettier": "^2.4.1",
     "rollup": "^2.60.0",
