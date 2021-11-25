@@ -37,8 +37,8 @@ export class LitScaffold extends connect(store)(LitElement) {
 
     return html`
       <nav>
-        <router-link to=''>Home</router-link>
-        <router-link .to=${{ name: RouteNames.ABOUT, params: { name: 'demo' }}}>
+        <router-link to="/">Home</router-link>
+        <router-link .to=${{name: RouteNames.ABOUT, params: {name: 'demo'}}}>
           About
         </router-link>
         <router-link to="xyz">Not found</router-link>

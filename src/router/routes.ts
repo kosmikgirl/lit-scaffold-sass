@@ -1,4 +1,4 @@
-import { literal } from 'lit/static-html.js';
+import {literal} from 'lit/static-html.js';
 import '../page/home-page';
 import '../page/about-page';
 import '../page/not-found-page';
@@ -9,7 +9,7 @@ export type Route = {
   tag: {
     _$litStatic$: unknown;
   };
-}
+};
 
 export const RouteNames = {
   HOME: 'home',

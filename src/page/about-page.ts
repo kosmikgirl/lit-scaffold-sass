@@ -1,10 +1,9 @@
-import { LitElement, html } from 'lit';
-import { customElement, property } from 'lit/decorators.js';
+import {LitElement, html} from 'lit';
+import {customElement, property} from 'lit/decorators.js';
 
 @customElement('about-page')
 export default class AboutPage extends LitElement {
-
-  @property({ type: Object })
+  @property({type: Object})
   routeProps = {
     name: 'WORLD',
   };
