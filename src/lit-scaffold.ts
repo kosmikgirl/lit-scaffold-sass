@@ -1,11 +1,11 @@
-import { html, css, LitElement } from 'lit';
-import { state } from 'lit/decorators.js';
-import { connect } from 'pwa-helpers';
+import {html, css, LitElement} from 'lit';
+import {state} from 'lit/decorators.js';
+import {connect} from 'pwa-helpers';
 import store from './store/store';
-import { AppState, setIsInitialized } from './store/module/app';
+import {AppState, setIsInitialized} from './store/module/app';
+import {RouteNames} from './router/routes';
 import './component/router-link';
 import './component/router-element';
-import {RouteNames} from './router/routes';
 
 export class LitScaffold extends connect(store)(LitElement) {
   static get styles() {
@@ -22,7 +22,7 @@ export class LitScaffold extends connect(store)(LitElement) {
   @state()
   private isInitialized = false;
 
-  stateChanged(state: { app: AppState }) {
+  stateChanged(state: {app: AppState}) {
     this.isInitialized = state.app.isInitialized;
   }
 

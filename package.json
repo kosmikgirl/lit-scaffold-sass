@@ -1,35 +1,36 @@
 {
   "name": "lit-scaffold",
   "version": "0.0.0",
-  "main": "/build/lit-scaffold.ts",
-  "exports": {
-    ".": "./build/lit-scaffold.ts"
-  },
-  "files": [
-    "dist"
-  ],
   "scripts": {
     "dev": "vite",
     "build": "rollup -c",
-    "lint": "npm run lint:lit-analyzer && npm run lint:eslint",
+    "lint": "run-s lint:*",
     "lint:eslint": "eslint 'src/**/*.{js,ts}'",
     "lint:lit-analyzer": "lit-analyzer",
-    "format": "prettier \"**/*.{cjs,html,js,json,md,ts}\" --ignore-path ./.eslintignore --write"
+    "format": "prettier \"**/*.{cjs,html,js,json,md,ts}\" --ignore-path ./.eslintignore --write",
+    "plop": "plop"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.6.2",
     "lit": "^2.0.0",
     "navigo": "^8.11.1",
-    "pwa-helpers": "^0.9.1"
+    "pwa-helpers": "^0.9.1",
+    "seng-device-state-tracker": "^1.1.4"
   },
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^13.0.6",
+    "@types/node": "^14.11.2",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",
     "@web/rollup-plugin-copy": "^0.3.0",
     "@web/rollup-plugin-html": "^1.10.1",
     "eslint": "^8.2.0",
-    "lit-analyzer": "^0.0.6",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "gts": "^3.1.0",
+    "lit-analyzer": "^1.2.1",
+    "npm-run-all": "^4.1.5",
+    "plop": "^2.1.0",
     "prettier": "^2.4.1",
     "rollup": "^2.60.0",
     "rollup-plugin-minify-html-literals": "^1.2.6",
@@ -38,9 +39,5 @@
     "ts-lit-plugin": "^1.2.1",
     "typescript": "^4.5.2",
     "vite": "^2.6.4"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://bitbucket.org/mediamonks/lit-scaffold/src"
   }
 }
