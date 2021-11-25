@@ -4,7 +4,8 @@
     "rootDir": ".",
     "outDir": "build",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "module": "ESNext"
   },
   "include": ["src/**/*.ts", "test/**/*.ts"]
 }
