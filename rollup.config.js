@@ -4,12 +4,14 @@ import resolve from '@rollup/plugin-node-resolve';
 import {terser} from 'rollup-plugin-terser';
 import minifyHTML from 'rollup-plugin-minify-html-literals';
 import summary from 'rollup-plugin-summary';
+import typescript from 'rollup-plugin-typescript2';
 
 export default {
   plugins: [
     html({
       input: 'index.html',
     }),
+    typescript(),
     resolve(),
     minifyHTML(),
     terser({
