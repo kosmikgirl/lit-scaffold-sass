@@ -3,6 +3,10 @@ import '../page/home-page';
 import '../page/about-page';
 import '../page/not-found-page';
 
+enum RouteParamEnum { id, slug }
+
+export type RouteParamType = { [key in keyof typeof RouteParamEnum ]?: string};
+
 export type Route = {
   name: string;
   path: string;
