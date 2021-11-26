@@ -58,6 +58,6 @@ export default class RouterElement extends LitElement {
   render() {
     const {tag, props} = this.activeRoute;
 
-    return html`<${tag} .routeProps=${props}></${tag}>`;
+    return html`<${tag} .routeParams=${props}></${tag}>`;
   }
 }

@@ -39,7 +39,7 @@ export class LitScaffold extends connect(store)(LitElement) {
       <nav>
         <router-link to="/" title="HomePage">Home</router-link>
         <router-link 
-          .to=${{name: RouteNames.ABOUT, routeProps: {id: 'demo'}}} 
+          .to=${{name: RouteNames.ABOUT, routeParams: {id: 'demo'}}} 
           title="AboutPage"
         >
           About
