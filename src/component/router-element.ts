@@ -51,6 +51,8 @@ export default class RouterElement extends LitElement {
 
   notFound(): void {
     this.activeRoute = {tag: notFound.tag, props: {}};
+
+    router.navigate('404');
   }
 
   render() {
