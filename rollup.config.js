@@ -5,6 +5,7 @@ import {terser} from 'rollup-plugin-terser';
 import minifyHTML from 'rollup-plugin-minify-html-literals';
 import summary from 'rollup-plugin-summary';
 import typescript from 'rollup-plugin-typescript2';
+import replace from '@rollup/plugin-replace';
 
 export default {
   plugins: [
@@ -22,6 +23,9 @@ export default {
     summary(),
     copy({
       patterns: ['images/**/*'],
+    }),
+    replace({
+      'process.env.NODE_ENV': JSON.stringify('production'),
     }),
   ],
   output: {

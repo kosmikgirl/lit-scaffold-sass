@@ -4,11 +4,17 @@
   "scripts": {
     "dev": "vite",
     "build": "rollup -c",
+    "build:sw": "rollup -c && npm run service-worker:generate && npm run service-worker:remove-build-strings",
     "lint": "run-s lint:*",
     "lint:eslint": "eslint 'src/**/*.{js,ts}'",
     "lint:lit-analyzer": "lit-analyzer",
     "format": "prettier \"**/*.{cjs,html,js,json,md,ts}\" --ignore-path ./.eslintignore --write",
-    "plop": "plop"
+    "plop": "plop",
+    "preview": "cd build && php -S localhost:1337",
+    "service-worker:generate": "workbox generateSW workbox-config.js",
+    "service-worker:remove-build-strings": "npm run service-worker-js:remove-build-strings && npm run service-worker-js-map:remove-build-strings",
+    "service-worker-js:remove-build-strings": "sed -i'.bak' 's,build/,,g' build/service-worker.js && rm build/service-worker.js.bak",
+    "service-worker-js-map:remove-build-strings": "sed -i'.bak' 's,build/,,g' build/service-worker.js.map && rm build/service-worker.js.map.bak"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.6.2",

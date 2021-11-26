@@ -21,6 +21,16 @@ export class LitScaffold extends connect(store)(LitElement) {
 
   stateChanged(state: {app: AppState}) {
     this.isInitialized = state.app.isInitialized;
+
+    /**
+     *  Uncomment the next condition and run `build:sw`
+     *  to get the PWA web worker up and running.
+     */
+    if (state.app.isInitialized && 'serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./service-worker.js');
+      });
+    }
   }
 
   firstUpdated() {
