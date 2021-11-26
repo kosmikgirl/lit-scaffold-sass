@@ -25,7 +25,7 @@ export const routes: Array<Route> = [
   },
   {
     name: RouteNames.ABOUT,
-    path: '/about/:name',
+    path: '/about/:id',
     tag: literal`about-page`,
   },
 ];

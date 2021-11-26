@@ -5,10 +5,10 @@ import {customElement, property} from 'lit/decorators.js';
 export default class AboutPage extends LitElement {
   @property({type: Object})
   routeProps = {
-    name: 'WORLD',
+    id: 'ID',
   };
 
   render() {
-    return html`<div>AboutPage ${this.routeProps?.name || 'no name'}</div>`;
+    return html`<div>AboutPage ${this.routeProps?.id || 'no id'}</div>`;
   }
 }

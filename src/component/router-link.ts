@@ -12,6 +12,9 @@ export default class RouterLink extends LitElement {
   @property()
   to: string | Link = '/';
 
+  @property()
+  title: string = '';
+
   navigate(event: MouseEvent) {
     event.preventDefault();
 
@@ -22,7 +25,7 @@ export default class RouterLink extends LitElement {
 
   render() {
     return html`
-      <a href=${this.to} @click=${this.navigate}>
+      <a href=${this.to} title=${this.title} @click=${this.navigate}>
         <slot></slot>
       </a>
     `;
