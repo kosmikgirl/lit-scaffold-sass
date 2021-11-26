@@ -30,7 +30,7 @@ export const routes: Array<Route> = [
   },
 ];
 
-export const notFound: Route = {
+export const notFoundRoute: Route = {
   name: RouteNames.NOT_FOUND,
   path: 'not-found',
   tag: literal`not-found-page`,

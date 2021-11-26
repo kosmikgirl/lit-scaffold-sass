@@ -3,7 +3,7 @@ import {html} from 'lit/static-html.js';
 import {customElement, state} from 'lit/decorators.js';
 import {Match} from 'navigo';
 import router from '../router/router';
-import {notFound, routes} from '../router/routes';
+import {notFoundRoute, routes} from '../router/routes';
 
 @customElement('router-element')
 export default class RouterElement extends LitElement {
@@ -50,7 +50,7 @@ export default class RouterElement extends LitElement {
   }
 
   notFound(): void {
-    this.activeRoute = {tag: notFound.tag, props: {}};
+    this.activeRoute = {tag: notFoundRoute.tag, props: {}};
 
     router.navigate('404');
   }
