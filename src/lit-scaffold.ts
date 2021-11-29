@@ -4,8 +4,8 @@ import {connect} from 'pwa-helpers';
 import store from './store/store';
 import {AppState, setIsInitialized} from './store/module/app';
 import {RouteNames, RouteDataParam} from './data/enum/route-enums';
-import './component/router-link';
-import './component/router-element';
+import './component/router/router-link';
+import './component/router/router-element';
 
 export class LitScaffold extends connect(store)(LitElement) {
   static get styles() {

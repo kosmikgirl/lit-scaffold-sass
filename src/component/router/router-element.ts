@@ -2,8 +2,8 @@ import {LitElement} from 'lit';
 import {html} from 'lit/static-html.js';
 import {customElement, state} from 'lit/decorators.js';
 import {Match} from 'navigo';
-import router from '../router/router';
-import {notFoundRoute, routes} from '../router/routes';
+import router from '../../router/router';
+import {notFoundRoute, routes} from '../../router/routes';
 
 @customElement('router-element')
 export default class RouterElement extends LitElement {

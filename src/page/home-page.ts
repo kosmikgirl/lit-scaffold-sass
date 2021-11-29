@@ -1,6 +1,6 @@
 import {html} from 'lit';
 import {customElement} from 'lit/decorators.js';
-import PageElement from '../component/page-element';
+import PageElement from './abstract/page-element';
 
 @customElement('home-page')
 export default class HomePage extends PageElement {
