@@ -3,7 +3,7 @@ import {state} from 'lit/decorators.js';
 import {connect} from 'pwa-helpers';
 import store from './store/store';
 import {AppState, setIsInitialized} from './store/module/app';
-import {RouteNames, RouteParamEnum} from './router/routes';
+import {RouteNames, RouteParamKey} from './router/routes';
 import './component/router-link';
 import './component/router-element';
 
@@ -42,7 +42,7 @@ export class LitScaffold extends connect(store)(LitElement) {
           .to=${{
             name: RouteNames.ABOUT,
             routeParams: {
-              [RouteParamEnum.id]: 'demo',
+              [RouteParamKey.id]: 'demo',
             },
           }}
           title="AboutPage"
