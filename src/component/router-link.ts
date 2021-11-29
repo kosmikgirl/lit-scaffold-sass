@@ -4,7 +4,7 @@ import router from '../router/router';
 
 type Link = {
   name: string;
-  routeParams: Record<string, string>;
+  routeData: Record<string, string>;
 };
 
 @customElement('router-link')
@@ -20,7 +20,7 @@ export default class RouterLink extends LitElement {
 
     if (typeof this.to === 'string') return router.navigate(this.to);
 
-    router.navigateByName(this.to.name, this.to.routeParams);
+    router.navigateByName(this.to.name, this.to.routeData);
   }
 
   render() {

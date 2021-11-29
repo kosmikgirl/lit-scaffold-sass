@@ -10,7 +10,7 @@ export default class RouterElement extends LitElement {
   @state()
   private activeRoute = {
     tag: routes[0].tag,
-    props: {},
+    routeData: {},
   };
 
   connectedCallback(): void {
@@ -45,19 +45,19 @@ export default class RouterElement extends LitElement {
 
     this.activeRoute = {
       tag: newRoute.tag,
-      props: matchedRoute.data || {},
+      routeData: matchedRoute.data || {},
     };
   }
 
   notFound(): void {
-    this.activeRoute = {tag: notFoundRoute.tag, props: {}};
+    this.activeRoute = {tag: notFoundRoute.tag, routeData: {}};
 
     router.navigate('404');
   }
 
   render() {
-    const {tag, props} = this.activeRoute;
+    const {tag, routeData} = this.activeRoute;
 
-    return html`<${tag} .routeParams=${props}></${tag}>`;
+    return html`<${tag} .routeData=${routeData}></${tag}>`;
   }
 }

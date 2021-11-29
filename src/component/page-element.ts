@@ -1,10 +1,10 @@
 import {LitElement, html} from 'lit';
 import {property} from 'lit/decorators.js';
-import {RouteParamType} from '../router/routes';
+import {RouteData} from '../data/type/route-types';
 
 export default class PageElement extends LitElement {
   @property({type: Object})
-  routeParams: RouteParamType = {};
+  routeData: RouteData = {};
 
   render() {
     return html`<div>LitPageElement</div>`;
