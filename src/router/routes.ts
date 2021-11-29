@@ -3,9 +3,12 @@ import '../page/home-page';
 import '../page/about-page';
 import '../page/not-found-page';
 
-enum RouteParamEnum { id, slug }
+export enum RouteParamEnum {
+  id = 'id',
+  slug = 'slug',
+}
 
-export type RouteParamType = { [key in keyof typeof RouteParamEnum ]?: string};
+export type RouteParamType = {[key in RouteParamEnum]?: string};
 
 export type Route = {
   name: string;
@@ -29,7 +32,7 @@ export const routes: Array<Route> = [
   },
   {
     name: RouteNames.ABOUT,
-    path: '/about/:id',
+    path: `/about/:${RouteParamEnum.id}`,
     tag: literal`about-page`,
   },
 ];

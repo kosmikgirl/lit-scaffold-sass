@@ -3,7 +3,7 @@ import {state} from 'lit/decorators.js';
 import {connect} from 'pwa-helpers';
 import store from './store/store';
 import {AppState, setIsInitialized} from './store/module/app';
-import {RouteNames} from './router/routes';
+import {RouteNames, RouteParamEnum} from './router/routes';
 import './component/router-link';
 import './component/router-element';
 
@@ -38,8 +38,13 @@ export class LitScaffold extends connect(store)(LitElement) {
     return html`
       <nav>
         <router-link to="/" title="HomePage">Home</router-link>
-        <router-link 
-          .to=${{name: RouteNames.ABOUT, routeParams: {id: 'demo'}}} 
+        <router-link
+          .to=${{
+            name: RouteNames.ABOUT,
+            routeParams: {
+              [RouteParamEnum.id]: 'demo',
+            },
+          }}
           title="AboutPage"
         >
           About

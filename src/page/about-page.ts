@@ -4,7 +4,7 @@ import {RouteParamType} from '../router/routes';
 
 @customElement('about-page')
 export default class AboutPage extends LitElement {
-  @property()
+  @property({type: Object})
   routeParams: RouteParamType = {id: 'ID'};
 
   render() {
