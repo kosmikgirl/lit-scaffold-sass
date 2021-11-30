@@ -9,7 +9,8 @@
     "lint:lit-analyzer": "lit-analyzer",
     "format": "prettier \"**/*.{cjs,html,js,json,md,ts}\" --ignore-path ./.eslintignore --write",
     "plop": "plop",
-    "localize": "lit-localize build"
+    "locale:extract": "lit-localize extract",
+    "locale:build": "lit-localize build"
   },
   "dependencies": {
     "@lit/localize": "^0.11.1",
