@@ -11,6 +11,11 @@ export default {
   plugins: [
     html({
       input: 'index.html',
+      minify: true,
+      // As we are not extracting the HTML-referenced assets (we copy the whole 'asset' folder insted),
+      // we have to change their href path to reflect what ends up in the build.
+      extractAssets: false,
+      transformHtml: [html => html.replaceAll('/src', '')],
     }),
     typescript(),
     resolve(),
@@ -20,10 +25,11 @@ export default {
       module: true,
       warnings: true,
     }),
-    summary(),
     copy({
-      patterns: ['images/**/*'],
+      patterns: ['asset/**/*'],
+      rootDir: './src',
     }),
+    summary(),
     replace({
       'process.env.NODE_ENV': JSON.stringify('production'),
     }),
