@@ -29,25 +29,25 @@ export class LitScaffold extends connect(store)(LitElement) {
      *  If you need to customize the configuration, please visit:
      *  https://developers.google.com/web/tools/workbox/guides/generate-service-worker/cli.
      */
-    if (
-      state.app.isInitialized &&
-      'serviceWorker' in navigator &&
-      import.meta.env?.MODE !== 'development'
-    ) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./service-worker.js').then(
-          registration => {
-            console.log(
-              'ServiceWorker registration successful with scope: ',
-              registration.scope
-            );
-          },
-          err => {
-            console.log('ServiceWorker registration failed: ', err);
-          }
-        );
-      });
-    }
+    // if (
+    //   state.app.isInitialized &&
+    //   'serviceWorker' in navigator &&
+    //   import.meta.env?.MODE !== 'development'
+    // ) {
+    //   window.addEventListener('load', () => {
+    //     navigator.serviceWorker.register('./service-worker.js').then(
+    //       registration => {
+    //         console.log(
+    //           'ServiceWorker registration successful with scope: ',
+    //           registration.scope
+    //         );
+    //       },
+    //       err => {
+    //         console.log('ServiceWorker registration failed: ', err);
+    //       }
+    //     );
+    //   });
+    // }
   }
 
   firstUpdated() {
