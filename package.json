@@ -9,9 +9,7 @@
     "lint:lit-analyzer": "lit-analyzer",
     "format": "prettier \"**/*.{cjs,html,js,json,md,ts}\" --ignore-path ./.eslintignore --write",
     "plop": "plop",
-    "pwa:build": "rollup -c && npm run pwa:html-manifest-add && npm run pwa:manifest-copy  && npm run pwa:sw-generate",
-    "pwa:html-manifest-add": "sed -i.'bak' 's,<head>,<head><link rel=\"manifest\" crossorigin=\"use-credentials\" href=\"manifest.json\">,g' build/index.html && rm build/index.html.bak",
-    "pwa:manifest-copy": "cp manifest.json ./build/manifest.json",
+    "pwa:build": "rollup -c --isPwa && npm run pwa:sw-generate",
     "pwa:sw-generate": "workbox generateSW workbox-config.js"
   },
   "dependencies": {

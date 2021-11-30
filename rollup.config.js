@@ -7,35 +7,69 @@ import summary from 'rollup-plugin-summary';
 import typescript from 'rollup-plugin-typescript2';
 import replace from '@rollup/plugin-replace';
 
-export default {
-  plugins: [
-    html({
-      input: 'index.html',
-      minify: true,
-      // As we are not extracting the HTML-referenced assets (we copy the whole 'asset' folder insted),
-      // we have to change their href path to reflect what ends up in the build.
-      extractAssets: false,
-      transformHtml: [html => html.replaceAll('/src', '')],
-    }),
-    typescript(),
-    resolve(),
-    minifyHTML(),
-    terser({
-      ecma: 2020,
-      module: true,
-      warnings: true,
-    }),
-    copy({
-      patterns: ['asset/**/*'],
-      rootDir: './src',
-    }),
-    summary(),
-    replace({
-      'process.env.NODE_ENV': JSON.stringify('production'),
-    }),
-  ],
-  output: {
-    dir: 'build',
-  },
-  preserveEntrySignatures: 'strict',
+export default commandLineArgs => {
+  const {isPwa} = commandLineArgs;
+
+  isPwa &&
+    console.log(
+      '\x1b[32m',
+      `>> You are running the PWA build process.
+       >> Your build will containt a service worker to provide the necessary behavior.`
+    );
+
+  const config = {
+    plugins: [
+      typescript(),
+      resolve(),
+      minifyHTML(),
+      terser({
+        ecma: 2020,
+        module: true,
+        warnings: true,
+      }),
+      copy({
+        patterns: ['asset/**/*'],
+        rootDir: './src',
+      }),
+      summary(),
+      replace({
+        'process.env.NODE_ENV': JSON.stringify('production'),
+      }),
+    ],
+    output: {
+      dir: 'build',
+    },
+    preserveEntrySignatures: 'strict',
+  };
+
+  let htmlConfig = {
+    input: 'index.html',
+    minify: true,
+    extractAssets: false,
+    transformHtml: [html => html.replaceAll('href="/src', 'href="')],
+  };
+
+  if (isPwa) {
+    htmlConfig = {
+      ...htmlConfig,
+      transformHtml: [
+        ...htmlConfig.transformHtml,
+        html =>
+          html.replace(
+            '<head>',
+            '<head><link rel="manifest" crossorigin="use-credentials" href="manifest.json">'
+          ),
+      ],
+    };
+
+    config.plugins.push(
+      copy({
+        patterns: 'manifest.json',
+      })
+    );
+  }
+
+  config.plugins.unshift(html(htmlConfig));
+
+  return config;
 };
