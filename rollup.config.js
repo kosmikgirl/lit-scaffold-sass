@@ -33,6 +33,7 @@ export default commandLineArgs => {
       }),
       summary(),
       replace({
+        // change the value to 'development' if you want to log more errors once built.
         'process.env.NODE_ENV': JSON.stringify('production'),
       }),
     ],
