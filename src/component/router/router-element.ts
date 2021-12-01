@@ -4,7 +4,7 @@ import {customElement, state} from 'lit/decorators.js';
 import {Match} from 'navigo';
 import router from '../../router/router';
 import {notFoundRoute, routes} from '../../router/routes';
-import {getLocale, setLocale} from '../../config/locale-config';
+import {getLocale, isLocalizationEnabled, setLocale} from '../../config/locale-config';
 import {RouteType} from '../../data/type/route-types';
 import {allLocales, sourceLocale} from '../../data/locale-codes';
 import {RouteNames} from '../../data/enum/route-enums';
@@ -24,7 +24,7 @@ export default class RouterElement extends LitElement {
       before: (done, match) => this.beforeChangeRoute(done, match),
     });
 
-    const processedRoutes = getLocale()
+    const processedRoutes = isLocalizationEnabled
       ? routes.map((route: RouteType): RouteType => ({
         ...route,
         path: `/:lang${route.path}`,
@@ -65,7 +65,7 @@ export default class RouterElement extends LitElement {
   }
 
   beforeChangeRoute(done: Function, matchedRoute: Match): void {
-    if (!getLocale()) return done();
+    if (!isLocalizationEnabled) return done();
 
     const lang = matchedRoute.data?.lang;
     const locale = allLocales.find(locale => locale === lang);
@@ -102,7 +102,9 @@ export default class RouterElement extends LitElement {
   }
 
   notFound(): void {
-    router.navigateByName(RouteNames.NOT_FOUND, {lang: getLocale()});
+    const routeData = isLocalizationEnabled ? {lang: getLocale()} : {};
+
+    router.navigateByName(RouteNames.NOT_FOUND, routeData);
   }
 
   render() {

@@ -5,11 +5,11 @@
   "tsConfig": "./tsconfig.json",
   "output": {
     "mode": "runtime",
-    "outputDir": "./src/data/locale",
+    "outputDir": "./src/data/locale/generated",
     "localeCodesModule": "./src/data/locale-codes.ts"
   },
   "interchange": {
     "format": "xliff",
-    "xliffDir": "./src/data/locale/extract"
+    "xliffDir": "./src/data/locale"
   }
 }
