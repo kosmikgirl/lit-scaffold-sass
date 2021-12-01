@@ -3,10 +3,10 @@ import {state} from 'lit/decorators.js';
 import {connect} from 'pwa-helpers';
 import store from './store/store';
 import {AppState, setIsInitialized} from './store/module/app';
-import {RouteNames, RouteDataParam} from './data/enum/route-enums';
 import './component/router/router-link';
 import './component/router/router-element';
-import './components/layout-element.ts';
+import './component/nav-element';
+import SEO from './util/seo';
 
 export class LitScaffold extends connect(store)(LitElement) {
   static get styles() {
@@ -23,8 +23,9 @@ export class LitScaffold extends connect(store)(LitElement) {
   @state()
   private isInitialized = false;
 
-  stateChanged(state: {app: AppState}) {
-    this.isInitialized = state.app.isInitialized;
+  stateChanged({app: {isInitialized, pageMetadata}}: {app: AppState}) {
+    this.isInitialized = isInitialized;
+    SEO.setSiteMetadata(pageMetadata);
 
     /**
      *  Uncomment the next condition and run `pwa:build` to get the PWA web worker up and running.
@@ -56,37 +57,25 @@ export class LitScaffold extends connect(store)(LitElement) {
 
   connectedCallback() {
     super.connectedCallback();
-
     store.dispatch(setIsInitialized(true));
   }
 
   headerTemplate() {
-    return html`<h1 slot="headerContent">
-      ${!this.isInitialized ? 'Loading...' : 'Lit Scaffold'}
-    </h1>`;
+    return html``;
   }
 
   render() {
     return html`
-      <nav>
-        <router-link to="/" title="HomePage">Home</router-link>
-        <router-link
-          .to=${{
-            name: RouteNames.ABOUT,
-            routeData: {
-              [RouteDataParam.id]: 'demo',
-            },
-          }}
-          title="AboutPage"
-        >
-          About
-        </router-link>
-        <router-link to="xyz">Not found</router-link>
-      </nav>
-      <layout-element pageTitle="Homepage"
-        >${this.headerTemplate()}</layout-element
-      >
-      <router-element></router-element>
+      <header>
+        <h1>${!this.isInitialized ? 'Loading...' : 'Lit Scaffold'}</h1>
+        <nav-element></nav-element>
+      </header>
+
+      <main>
+        <router-element slot="mainContent"></router-element>
+      </main>
+
+      <footer>Footer.</footer>
     `;
   }
 }
