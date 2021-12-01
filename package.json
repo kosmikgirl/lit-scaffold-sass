@@ -8,7 +8,9 @@
     "lint:eslint": "eslint 'src/**/*.{js,ts}'",
     "lint:lit-analyzer": "lit-analyzer",
     "format": "prettier \"**/*.{cjs,html,js,json,md,ts}\" --ignore-path ./.eslintignore --write",
-    "plop": "plop"
+    "plop": "plop",
+    "pwa:build": "rollup -c --isPwa && npm run pwa:sw-generate",
+    "pwa:sw-generate": "workbox generateSW workbox-config.js"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.6.2",
@@ -18,7 +20,8 @@
   },
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^13.0.6",
-    "@types/node": "^14.11.2",
+    "@rollup/plugin-replace": "^3.0.0",
+    "@types/node": "^14.17.34",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",
     "@web/rollup-plugin-copy": "^0.3.0",
@@ -39,6 +42,7 @@
     "ts-lit-plugin": "^1.2.1",
     "tslib": "^2.3.1",
     "typescript": "^4.5.2",
-    "vite": "^2.6.4"
+    "vite": "^2.6.4",
+    "workbox-cli": "^6.4.1"
   }
 }
