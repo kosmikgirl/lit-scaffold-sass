@@ -68,7 +68,7 @@ export class LitScaffold extends connect(store)(LitElement) {
     return html`
       <header>
         <h1>${!this.isInitialized ? 'Loading...' : 'Lit Scaffold'}</h1>
-        <nav-element slot="headerContent"></nav-element>
+        <nav-element></nav-element>
       </header>
 
       <main>
