@@ -1,8 +1,11 @@
 import {html, css, LitElement} from 'lit';
-import {property} from 'lit/decorators.js';
+import {state} from 'lit/decorators.js';
 import {connect} from 'pwa-helpers';
 import store from './store/store';
 import {AppState, setIsInitialized} from './store/module/app';
+import {RouteNames, RouteDataParam} from './data/enum/route-enums';
+import './component/router/router-link';
+import './component/router/router-element';
 
 export class LitScaffold extends connect(store)(LitElement) {
   static get styles() {
@@ -16,8 +19,8 @@ export class LitScaffold extends connect(store)(LitElement) {
     `;
   }
 
-  @property({type: Boolean})
-  isInitialized = false;
+  @state()
+  private isInitialized = false;
 
   stateChanged(state: {app: AppState}) {
     this.isInitialized = state.app.isInitialized;
@@ -50,14 +53,34 @@ export class LitScaffold extends connect(store)(LitElement) {
     // }
   }
 
-  firstUpdated() {
+  connectedCallback() {
+    super.connectedCallback();
+
     store.dispatch(setIsInitialized(true));
   }
 
   render() {
     if (!this.isInitialized) return html`<h1>Loading...</h1>`;
 
-    return html`<h1>Lit Scaffold</h1>`;
+    return html`
+      <nav>
+        <router-link to="/" title="HomePage">Home</router-link>
+        <router-link
+          .to=${{
+            name: RouteNames.ABOUT,
+            routeData: {
+              [RouteDataParam.id]: 'demo',
+            },
+          }}
+          title="AboutPage"
+        >
+          About
+        </router-link>
+        <router-link to="xyz">Not found</router-link>
+      </nav>
+      <h1>Lit Scaffold</h1>
+      <router-element></router-element>
+    `;
   }
 }
 
