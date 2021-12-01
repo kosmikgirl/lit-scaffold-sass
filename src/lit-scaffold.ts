@@ -3,6 +3,7 @@ import {property} from 'lit/decorators.js';
 import {connect} from 'pwa-helpers';
 import store from './store/store';
 import {AppState, setIsInitialized} from './store/module/app';
+import './components/layout-element.ts';
 
 export class LitScaffold extends connect(store)(LitElement) {
   static get styles() {
@@ -27,10 +28,16 @@ export class LitScaffold extends connect(store)(LitElement) {
     store.dispatch(setIsInitialized(true));
   }
 
-  render() {
-    if (!this.isInitialized) return html`<h1>Loading...</h1>`;
+  headerTemplate() {
+    return html`<h1 slot="headerContent">
+      ${!this.isInitialized ? 'Loading...' : 'Lit Scaffold'}
+    </h1>`;
+  }
 
-    return html`<h1>Lit Scaffold</h1>`;
+  render() {
+    return html`<layout-element pageTitle="Homepage"
+      >${this.headerTemplate()}</layout-element
+    >`;
   }
 }
 
