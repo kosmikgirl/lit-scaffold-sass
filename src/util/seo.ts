@@ -1,13 +1,8 @@
 import data from '../data/site/metadata.json';
+import {PageMetadata} from '../data/type/seo';
 
 export default class SEO {
-  public static setSiteMetadata = (
-    pageTitle: string,
-    pageDescription?: string,
-    pageBanner?: string,
-    pageBannerAlt?: string,
-    pageContentType?: string
-  ): void => {
+  public static setSiteMetadata = (pageMetadata: PageMetadata): void => {
     const {
       author,
       authorType,
@@ -21,18 +16,20 @@ export default class SEO {
     } = data.site;
 
     const seoUrl = window.location.href;
-    const seoTitle: string = `${pageTitle ? pageTitle : title}${
-      globalTitle ? globalTitle : ``
-    }`;
-    const seoDescription: string = pageDescription
-      ? pageDescription
+    const seoTitle: string = `${
+      pageMetadata.title ? pageMetadata.title : title
+    }${globalTitle ? globalTitle : ``}`;
+    const seoDescription: string = pageMetadata.description
+      ? pageMetadata.description
       : description;
-    const seoBanner: string = pageBanner
-      ? `${seoUrl}${pageBanner}`
+    const seoBanner: string = pageMetadata.banner
+      ? `${seoUrl}${pageMetadata.banner}`
       : `${seoUrl}${banner.url}`;
-    const seoBannerAlt: string = pageBannerAlt ? pageBannerAlt : banner.alt;
-    const seoContentType: string = pageContentType
-      ? pageContentType
+    const seoBannerAlt: string = pageMetadata.bannerAlt
+      ? pageMetadata.bannerAlt
+      : banner.alt;
+    const seoContentType: string = pageMetadata.contentType
+      ? pageMetadata.contentType
       : `Website`;
 
     const twitterData = {
@@ -121,7 +118,7 @@ export default class SEO {
       },
     };
 
-    if (!pageContentType) {
+    if (!pageMetadata.contentType) {
       const script = document.createElement('script');
       script.setAttribute('type', 'application/ld+json');
       script.innerHTML = JSON.stringify(schemaWebPage);
