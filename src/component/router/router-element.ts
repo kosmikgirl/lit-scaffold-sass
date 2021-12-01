@@ -57,7 +57,6 @@ export default class RouterElement extends LitElement {
     if (!newPath.startsWith('/')) newPath = `/${newPath}`;
 
     if (newPath.includes(':lang')) {
-      console.debug('[router-element] localizePath', newPath.replace(':lang', locale));
       return newPath.replace(':lang', locale);
     }
 
