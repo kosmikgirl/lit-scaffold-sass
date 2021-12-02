@@ -1,5 +1,5 @@
 import {html, LitElement} from 'lit';
-import {RouteDataParam, RouteNames} from '../data/enum/route-enums';
+import {RouteDataParam, RouteNames} from '../data/enum/index';
 
 export class NavElement extends LitElement {
   render() {

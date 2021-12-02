@@ -1,2 +1,2 @@
-export * from './route-types';
-export * from './page-metadata';
+export * from './route-type';
+export * from './seo-type';

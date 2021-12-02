@@ -1,6 +1,6 @@
 import {html} from 'lit';
 import {customElement} from 'lit/decorators.js';
-import {RouteDataParam} from '../data/enum/route-enums';
+import {RouteDataParam} from '../data/enum/index';
 import PageElement from './abstract/page-element';
 
 @customElement('about-page')
