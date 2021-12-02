@@ -1,4 +1,4 @@
-import {RouteDataParam} from '../enum/index';
+import {RouteDataParam} from '../enum/';
 
 export type RouteData = {[key in RouteDataParam]?: string};
 

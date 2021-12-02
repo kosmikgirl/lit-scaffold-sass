@@ -1,6 +1,6 @@
 import data from '../data/site/metadata.json';
-import {FacebookData, PageMetadata, TwitterData} from '../data/type/index';
-import {SeoAttribute, SeoType} from '../data/enum/index';
+import {FacebookData, PageMetadata, TwitterData} from '../data/type/';
+import {SeoAttribute, SeoType} from '../data/enum/';
 
 export default class SEO {
   public static setSiteMetadata = (pageMetadata: PageMetadata): void => {

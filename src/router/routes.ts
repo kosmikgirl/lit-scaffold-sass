@@ -1,6 +1,6 @@
 import {literal} from 'lit/static-html.js';
-import {RouteTypes} from '../data/type/index';
-import {RouteNames, RouteDataParam} from '../data/enum/index';
+import {RouteTypes} from '../data/type/';
+import {RouteNames, RouteDataParam} from '../data/enum/';
 import '../page/home-page';
 import '../page/about-page';
 import '../page/not-found-page';

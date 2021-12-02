@@ -1,5 +1,5 @@
 import {html, LitElement} from 'lit';
-import {RouteDataParam, RouteNames} from '../data/enum/index';
+import {RouteDataParam, RouteNames} from '../data/enum/';
 import {customElement} from 'lit/decorators.js';
 
 @customElement('nav-element')
