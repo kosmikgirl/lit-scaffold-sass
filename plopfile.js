@@ -11,7 +11,7 @@ module.exports = function (plop) {
     actions: [
       {
         type: 'add',
-        path: 'src/components/{{dashCase name}}.ts',
+        path: 'src/component/{{dashCase name}}.ts',
         templateFile: 'plop-templates/component.ts',
         skipIfExists: true,
       },
