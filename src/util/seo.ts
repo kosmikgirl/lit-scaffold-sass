@@ -62,38 +62,35 @@ export default class SEO {
     const {head} = document;
     document.title = seoTitle;
 
-    const metaDescription = document.createElement('meta');
-    metaDescription.setAttribute('name', 'description');
-    metaDescription.setAttribute('content', seoDescription);
-    metaDescription.dataset.type = 'seo';
-    head?.appendChild(metaDescription);
-
-    const metaImage = document.createElement('meta');
-    metaImage.setAttribute('name', 'image');
-    metaImage.setAttribute('content', seoBanner);
-    metaImage.dataset.type = 'seo';
-    head?.appendChild(metaImage);
-
-    Object.entries(twitterData).forEach(attribute => {
-      const meta = document.createElement('meta');
-      meta.setAttribute(
-        'name',
-        `twitter:${attribute[0] === 'alt' ? 'image:alt' : attribute[0]}`
-      );
-      meta.setAttribute('content', attribute[1]);
+    const setMetaTag = (
+      attribute: string,
+      type: string,
+      data: string
+    ): void => {
+      const meta = <HTMLMetaElement>document.createElement('meta');
+      meta.setAttribute(attribute, type);
+      meta.setAttribute('content', data);
       meta.dataset.type = 'seo';
       head?.appendChild(meta);
+    };
+
+    setMetaTag('name', 'description', seoDescription);
+    setMetaTag('name', 'image', seoBanner);
+
+    Object.entries(twitterData).forEach(attribute => {
+      setMetaTag(
+        'name',
+        `twitter:${attribute[0] === 'alt' ? 'image:alt' : attribute[0]}`,
+        attribute[1]
+      );
     });
 
     Object.entries(facebookData).forEach(attribute => {
-      const meta = document.createElement('meta');
-      meta.setAttribute(
+      setMetaTag(
         'property',
-        `${attribute[0] === 'alt' ? 'og:image:alt' : `og:${attribute[0]}`}`
+        `${attribute[0] === 'alt' ? 'og:image:alt' : `og:${attribute[0]}`}`,
+        attribute[1]
       );
-      meta.setAttribute('content', attribute[1]);
-      meta.dataset.type = 'seo';
-      head?.appendChild(meta);
     });
 
     const schemaWebPage = {
@@ -127,7 +124,7 @@ export default class SEO {
       },
     };
 
-    const script = document.createElement('script');
+    const script = <HTMLScriptElement>document.createElement('script');
     script.setAttribute('type', 'application/ld+json');
     script.innerHTML = JSON.stringify(schemaWebPage);
     script.dataset.type = 'seo';
