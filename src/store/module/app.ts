@@ -1,6 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {PayloadAction} from '@reduxjs/toolkit/dist/createAction';
-import {PageMetadata} from '../../data/type/seo';
+import {PageMetadata} from '../../data/type/index';
 
 export type AppState = {
   isInitialized: boolean;
