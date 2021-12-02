@@ -8,10 +8,9 @@ export default class SEO {
     if (!head) return;
 
     const seoElements = document.querySelectorAll('[data-type="seo"]');
-    seoElements &&
-      seoElements.forEach(element => {
-        element.remove();
-      });
+    seoElements.forEach(element => {
+      element.remove();
+    });
 
     const {
       author,
@@ -60,7 +59,7 @@ export default class SEO {
       type: string,
       data: string
     ): void => {
-      const meta = <HTMLMetaElement>document.createElement('meta');
+      const meta = document.createElement('meta');
       meta.setAttribute(attribute, type);
       meta.setAttribute(SeoAttribute.CONTENT, data);
       meta.dataset.type = 'seo';
@@ -70,20 +69,16 @@ export default class SEO {
     setMetaTag(SeoAttribute.NAME, SeoType.DESCRIPTION, seoDescription);
     setMetaTag(SeoAttribute.NAME, SeoType.IMAGE, seoBanner);
 
-    Object.entries(twitterData).forEach(attribute => {
+    Object.entries(twitterData).forEach(([key, value]) => {
       setMetaTag(
         SeoAttribute.NAME,
-        `twitter:${attribute[0] === 'alt' ? 'image:alt' : attribute[0]}`,
-        attribute[1]
+        `twitter:${key === 'alt' ? 'image:alt' : key}`,
+        value
       );
     });
 
-    Object.entries(facebookData).forEach(attribute => {
-      setMetaTag(
-        SeoAttribute.PROPERTY,
-        `${attribute[0] === 'alt' ? 'og:image:alt' : `og:${attribute[0]}`}`,
-        attribute[1]
-      );
+    Object.entries(facebookData).forEach(([key, value]) => {
+      setMetaTag(SeoAttribute.PROPERTY, `og:${key}`, value);
     });
 
     const schemaWebPage = {
@@ -117,7 +112,7 @@ export default class SEO {
       },
     };
 
-    const script = <HTMLScriptElement>document.createElement('script');
+    const script = document.createElement('script');
     script.setAttribute('type', 'application/ld+json');
     script.innerHTML = JSON.stringify(schemaWebPage);
     script.dataset.type = 'seo';
