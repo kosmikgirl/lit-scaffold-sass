@@ -26,21 +26,11 @@ export default class SEO {
     } = data.site;
 
     const seoUrl = window.location.href;
-    const seoTitle = `${pageMetadata.title ? pageMetadata.title : title}${
-      globalTitle ? globalTitle : ''
-    }`;
-    const seoDescription = pageMetadata.description
-      ? pageMetadata.description
-      : description;
-    const seoBanner = pageMetadata.banner
-      ? `${seoUrl}${pageMetadata.banner}`
-      : `${seoUrl}${banner.url}`;
-    const seoBannerAlt = pageMetadata.bannerAlt
-      ? pageMetadata.bannerAlt
-      : banner.alt;
-    const seoContentType = pageMetadata.contentType
-      ? pageMetadata.contentType
-      : 'Website';
+    const seoTitle = `${pageMetadata.title ?? title}${globalTitle ?? ''}`;
+    const seoDescription = pageMetadata.description ?? description;
+    const seoBanner = `${seoUrl}${pageMetadata.banner ?? banner.url}`;
+    const seoBannerAlt = pageMetadata.bannerAlt ?? banner.alt;
+    const seoContentType = pageMetadata.contentType ?? 'Website';
 
     const twitterData: TwitterData = {
       card: 'summary',
