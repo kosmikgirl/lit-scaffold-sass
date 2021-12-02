@@ -2,7 +2,7 @@ import {LitElement} from 'lit';
 import {property} from 'lit/decorators.js';
 import {RouteData} from '../../data/type/route-types';
 import {PageMetadata} from '../../data/type/seo';
-import {setPageTitle} from '../../store/module/app';
+import {setPageMetadata} from '../../store/module/app';
 import store from '../../store/store';
 
 export default abstract class PageElement extends LitElement {
@@ -20,6 +20,6 @@ export default abstract class PageElement extends LitElement {
 
   connectedCallback() {
     super.connectedCallback();
-    store.dispatch(setPageTitle(this._pageMetadata));
+    store.dispatch(setPageMetadata(this._pageMetadata));
   }
 }

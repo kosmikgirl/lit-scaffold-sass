@@ -17,12 +17,12 @@ export const appSlice = createSlice({
     setIsInitialized: (state: AppState, action: PayloadAction<boolean>) => {
       state.isInitialized = action.payload;
     },
-    setPageTitle: (state: AppState, action: PayloadAction<PageMetadata>) => {
+    setPageMetadata: (state: AppState, action: PayloadAction<PageMetadata>) => {
       state.pageMetadata = action.payload;
     },
   },
 });
 
-export const {setIsInitialized, setPageTitle} = appSlice.actions;
+export const {setIsInitialized, setPageMetadata} = appSlice.actions;
 
 export default appSlice.reducer;
