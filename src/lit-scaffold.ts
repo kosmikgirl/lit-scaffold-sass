@@ -25,7 +25,7 @@ export class LitScaffold extends connect(store)(LitElement) {
 
   stateChanged({app: {isInitialized, pageMetadata}}: {app: AppState}) {
     this.isInitialized = isInitialized;
-    SEO.setSiteMetadata(pageMetadata);
+    pageMetadata.title.length > 0 && SEO.setSiteMetadata(pageMetadata);
 
     /**
      *  Uncomment the next condition and run `pwa:build` to get the PWA web worker up and running.
@@ -60,22 +60,16 @@ export class LitScaffold extends connect(store)(LitElement) {
     store.dispatch(setIsInitialized(true));
   }
 
-  headerTemplate() {
-    return html``;
-  }
-
   render() {
     return html`
       <header>
         <h1>${!this.isInitialized ? 'Loading...' : 'Lit Scaffold'}</h1>
         <nav-element></nav-element>
       </header>
-
       <main>
         <router-element slot="mainContent"></router-element>
       </main>
-
-      <footer>Footer.</footer>
+      <footer>Footer</footer>
     `;
   }
 }
