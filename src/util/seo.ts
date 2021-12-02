@@ -1,8 +1,14 @@
 import data from '../data/site/metadata.json';
-import {PageMetadata} from '../data/type/seo';
+import {PageMetadata} from '../data/type/index';
 
 export default class SEO {
   public static setSiteMetadata = (pageMetadata: PageMetadata): void => {
+    const seoElements = document.querySelectorAll('[data-type="seo"]');
+    seoElements &&
+      seoElements.forEach(element => {
+        element.remove();
+      });
+
     const {
       author,
       authorType,
@@ -53,18 +59,19 @@ export default class SEO {
       site_name: title,
     };
 
-    const head = document.getElementsByTagName('head').item(0);
-
+    const {head} = document;
     document.title = seoTitle;
 
     const metaDescription = document.createElement('meta');
     metaDescription.setAttribute('name', 'description');
     metaDescription.setAttribute('content', seoDescription);
+    metaDescription.dataset.type = 'seo';
     head?.appendChild(metaDescription);
 
     const metaImage = document.createElement('meta');
     metaImage.setAttribute('name', 'image');
     metaImage.setAttribute('content', seoBanner);
+    metaImage.dataset.type = 'seo';
     head?.appendChild(metaImage);
 
     Object.entries(twitterData).forEach(attribute => {
@@ -74,6 +81,7 @@ export default class SEO {
         `twitter:${attribute[0] === 'alt' ? 'image:alt' : attribute[0]}`
       );
       meta.setAttribute('content', attribute[1]);
+      meta.dataset.type = 'seo';
       head?.appendChild(meta);
     });
 
@@ -84,6 +92,7 @@ export default class SEO {
         `${attribute[0] === 'alt' ? 'og:image:alt' : `og:${attribute[0]}`}`
       );
       meta.setAttribute('content', attribute[1]);
+      meta.dataset.type = 'seo';
       head?.appendChild(meta);
     });
 
@@ -118,11 +127,10 @@ export default class SEO {
       },
     };
 
-    if (!pageMetadata.contentType) {
-      const script = document.createElement('script');
-      script.setAttribute('type', 'application/ld+json');
-      script.innerHTML = JSON.stringify(schemaWebPage);
-      head?.appendChild(script);
-    }
+    const script = document.createElement('script');
+    script.setAttribute('type', 'application/ld+json');
+    script.innerHTML = JSON.stringify(schemaWebPage);
+    script.dataset.type = 'seo';
+    head?.appendChild(script);
   };
 }
