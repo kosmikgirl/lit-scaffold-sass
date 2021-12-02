@@ -72,7 +72,7 @@ export class LitScaffold extends connect(store)(LitElement) {
       </header>
 
       <main>
-        <router-element slot="mainContent"></router-element>
+        <router-element></router-element>
       </main>
 
       <footer>Footer.</footer>
