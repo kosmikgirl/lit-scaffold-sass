@@ -1,8 +1,12 @@
 import data from '../data/site/metadata.json';
-import {PageMetadata} from '../data/type/index';
+import {FacebookData, PageMetadata, TwitterData} from '../data/type/index';
+import {SeoAttribute, SeoType} from '../data/enum/index';
 
 export default class SEO {
   public static setSiteMetadata = (pageMetadata: PageMetadata): void => {
+    const {head} = document;
+    if (!head) return;
+
     const seoElements = document.querySelectorAll('[data-type="seo"]');
     seoElements &&
       seoElements.forEach(element => {
@@ -38,7 +42,7 @@ export default class SEO {
       ? pageMetadata.contentType
       : `Website`;
 
-    const twitterData = {
+    const twitterData: TwitterData = {
       card: 'summary',
       title: seoTitle,
       description: seoDescription,
@@ -48,7 +52,7 @@ export default class SEO {
       site: social.twitter.user,
     };
 
-    const facebookData = {
+    const facebookData: FacebookData = {
       type: seoContentType,
       title: seoTitle,
       description: seoDescription,
@@ -59,7 +63,6 @@ export default class SEO {
       site_name: title,
     };
 
-    const {head} = document;
     document.title = seoTitle;
 
     const setMetaTag = (
@@ -69,17 +72,17 @@ export default class SEO {
     ): void => {
       const meta = <HTMLMetaElement>document.createElement('meta');
       meta.setAttribute(attribute, type);
-      meta.setAttribute('content', data);
+      meta.setAttribute(SeoAttribute.CONTENT, data);
       meta.dataset.type = 'seo';
-      head?.appendChild(meta);
+      head.appendChild(meta);
     };
 
-    setMetaTag('name', 'description', seoDescription);
-    setMetaTag('name', 'image', seoBanner);
+    setMetaTag(SeoAttribute.NAME, SeoType.DESCRIPTION, seoDescription);
+    setMetaTag(SeoAttribute.NAME, SeoType.IMAGE, seoBanner);
 
     Object.entries(twitterData).forEach(attribute => {
       setMetaTag(
-        'name',
+        SeoAttribute.NAME,
         `twitter:${attribute[0] === 'alt' ? 'image:alt' : attribute[0]}`,
         attribute[1]
       );
@@ -87,7 +90,7 @@ export default class SEO {
 
     Object.entries(facebookData).forEach(attribute => {
       setMetaTag(
-        'property',
+        SeoAttribute.PROPERTY,
         `${attribute[0] === 'alt' ? 'og:image:alt' : `og:${attribute[0]}`}`,
         attribute[1]
       );
@@ -128,6 +131,6 @@ export default class SEO {
     script.setAttribute('type', 'application/ld+json');
     script.innerHTML = JSON.stringify(schemaWebPage);
     script.dataset.type = 'seo';
-    head?.appendChild(script);
+    head.appendChild(script);
   };
 }
