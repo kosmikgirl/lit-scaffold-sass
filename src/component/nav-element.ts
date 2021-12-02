@@ -1,6 +1,8 @@
 import {html, LitElement} from 'lit';
 import {RouteDataParam, RouteNames} from '../data/enum/index';
+import {customElement} from 'lit/decorators.js';
 
+@customElement('nav-element')
 export class NavElement extends LitElement {
   render() {
     return html`<nav>
@@ -20,5 +22,3 @@ export class NavElement extends LitElement {
     </nav>`;
   }
 }
-
-window.customElements.define('nav-element', NavElement);
