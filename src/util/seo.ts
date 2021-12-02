@@ -26,21 +26,21 @@ export default class SEO {
     } = data.site;
 
     const seoUrl = window.location.href;
-    const seoTitle: string = `${
-      pageMetadata.title ? pageMetadata.title : title
-    }${globalTitle ? globalTitle : ``}`;
-    const seoDescription: string = pageMetadata.description
+    const seoTitle = `${pageMetadata.title ? pageMetadata.title : title}${
+      globalTitle ? globalTitle : ''
+    }`;
+    const seoDescription = pageMetadata.description
       ? pageMetadata.description
       : description;
-    const seoBanner: string = pageMetadata.banner
+    const seoBanner = pageMetadata.banner
       ? `${seoUrl}${pageMetadata.banner}`
       : `${seoUrl}${banner.url}`;
-    const seoBannerAlt: string = pageMetadata.bannerAlt
+    const seoBannerAlt = pageMetadata.bannerAlt
       ? pageMetadata.bannerAlt
       : banner.alt;
-    const seoContentType: string = pageMetadata.contentType
+    const seoContentType = pageMetadata.contentType
       ? pageMetadata.contentType
-      : `Website`;
+      : 'Website';
 
     const twitterData: TwitterData = {
       card: 'summary',
@@ -97,8 +97,8 @@ export default class SEO {
     });
 
     const schemaWebPage = {
-      '@context': `http://schema.org`,
-      '@type': `WebPage`,
+      '@context': 'http://schema.org',
+      '@type': 'WebPage',
       url: seoUrl,
       description: description,
       inLanguage: language,
@@ -122,7 +122,7 @@ export default class SEO {
         name: author,
       },
       image: {
-        '@type': `ImageObject`,
+        '@type': 'ImageObject',
         url: logo,
       },
     };
