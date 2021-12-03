@@ -38,7 +38,7 @@ router.hooks({
       }
 
       router.navigate(path);
-      return done(false); // Why false? Home link doesn't work without it.
+      return done(false);
     }
 
     foundLocale !== currentLocale && setLocale(foundLocale);
