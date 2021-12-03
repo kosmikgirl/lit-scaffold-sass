@@ -28,8 +28,12 @@ export default commandLineArgs => {
         warnings: true,
       }),
       copy({
-        patterns: ['asset/**/*'],
+        patterns: 'asset/**/*',
         rootDir: './src',
+      }),
+      copy({
+        patterns: '**/*.js',
+        rootDir: './src/data/i18n/locale',
       }),
       summary(),
       replace({

@@ -3,15 +3,14 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "build": "rollup -c",
+    "build": "lit-localize build && rollup -c",
     "lint": "run-s lint:*",
     "lint:eslint": "eslint 'src/**/*.{js,ts}'",
     "lint:lit-analyzer": "lit-analyzer",
     "format": "prettier \"**/*.{cjs,html,js,json,md,ts}\" --ignore-path ./.eslintignore --write",
     "plop": "plop",
     "locale:extract": "lit-localize extract",
-    "locale:build": "lit-localize build",
-    "pwa:build": "rollup -c --isPwa && npm run pwa:sw-generate",
+    "pwa:build": "lit-localize build && rollup -c --isPwa && npm run pwa:sw-generate",
     "pwa:sw-generate": "workbox generateSW workbox-config.js"
   },
   "dependencies": {
