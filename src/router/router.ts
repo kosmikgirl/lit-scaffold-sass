@@ -5,7 +5,7 @@ import {
   isLocalizationEnabled,
 } from '../config/locale-config';
 import {RouteNames} from '../data/enum/route-enums';
-import {allLocales} from '../data/locale-codes';
+import {allLocales} from '../data/i18n/locale-codes';
 
 const localizePath = (path: string, locale: string) => {
   path = path.startsWith('/') ? path : `/${path}`;
