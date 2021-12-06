@@ -6,6 +6,9 @@ import minifyHTML from 'rollup-plugin-minify-html-literals';
 import summary from 'rollup-plugin-summary';
 import typescript from 'rollup-plugin-typescript2';
 import replace from '@rollup/plugin-replace';
+import del from 'rollup-plugin-delete';
+import imagemin from 'rollup-plugin-imagemin';
+import imageminWebp from 'imagemin-webp';
 
 export default commandLineArgs => {
   const {isPwa} = commandLineArgs;
@@ -19,6 +22,12 @@ export default commandLineArgs => {
 
   const config = {
     plugins: [
+      del({targets: 'build/*'}),
+      replace({
+        // change the value to 'development' if you want to log more errors once built.
+        'process.env.NODE_ENV': JSON.stringify('production'),
+        preventAssignment: true
+      }),
       typescript(),
       resolve(),
       minifyHTML(),
@@ -27,20 +36,27 @@ export default commandLineArgs => {
         module: true,
         warnings: true,
       }),
+      imagemin({
+        preserveTree: true,
+        imageminWebp: {
+          quality: 50,
+        },
+        plugins: {
+          imageminWebp,
+        },
+      }),
       copy({
-        patterns: ['asset/**/*', 'robots.txt'],
+        patterns: ['robots.txt'],
         rootDir: './src',
       }),
       summary(),
-      replace({
-        // change the value to 'development' if you want to log more errors once built.
-        'process.env.NODE_ENV': JSON.stringify('production'),
-      }),
     ],
+    preserveEntrySignatures: 'strict',
+    input: './src/lit-scaffold.ts',
     output: {
       dir: 'build',
-    },
-    preserveEntrySignatures: 'strict',
+      format: 'cjs',
+    }
   };
 
   let htmlConfig = {
