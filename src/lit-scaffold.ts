@@ -6,6 +6,7 @@ import {AppState, setIsInitialized} from './store/module/app';
 import {RouteNames, RouteDataParam} from './data/enum/route-enums';
 import './component/router/router-link';
 import './component/router/router-element';
+import './component/image-element';
 
 export class LitScaffold extends connect(store)(LitElement) {
   static get styles() {
