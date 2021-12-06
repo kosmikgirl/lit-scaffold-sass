@@ -1,5 +1,7 @@
-import {html, css, LitElement} from 'lit';
+import {html, LitElement} from 'lit';
+import {customElement} from 'lit/decorators.js';
 
+@customElement('{{kebabCase name}}')
 export class {{pascalCase name}} extends LitElement {
   render() {
     return html`
@@ -9,5 +11,3 @@ export class {{pascalCase name}} extends LitElement {
     ;
   }
 }
-
-window.customElements.define('{{kebabCase name}}', {{pascalCase name}});
