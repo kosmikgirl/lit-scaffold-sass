@@ -2,7 +2,7 @@ import {LitElement} from 'lit';
 import {html} from 'lit/static-html.js';
 import {customElement, state} from 'lit/decorators.js';
 import {Match} from 'navigo';
-import router, {pageNotFound} from '../../router/router';
+import router from '../../router/router';
 import {routes} from '../../router/routes';
 import {isLocalizationEnabled} from '../../config/locale-config';
 import {RouteType} from '../../data/type/route-types';
@@ -51,6 +51,8 @@ export default class RouterElement extends LitElement {
     const foundRoute = routes.find(
       route => route.name === matchedRoute.route.name
     );
+
+    if (!foundRoute) return;
 
     this.activeRoute = {
       tag: foundRoute.tag,

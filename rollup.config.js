@@ -28,8 +28,12 @@ export default commandLineArgs => {
         warnings: true,
       }),
       copy({
-        patterns: ['asset/**/*'],
+        patterns: 'asset/**/*',
         rootDir: './src',
+      }),
+      copy({
+        patterns: '**/*.js',
+        rootDir: './src/data/i18n/locale',
       }),
       summary(),
       replace({
@@ -47,7 +51,12 @@ export default commandLineArgs => {
     input: 'index.html',
     minify: true,
     extractAssets: false,
-    transformHtml: [html => html.replaceAll('href="/src', 'href="')],
+    transformHtml: [
+      // Fix build process references.
+      html => html.replaceAll('href="/src', 'href="'),
+      // Fix 404 when localization is on and there's a trailing slash in the URL.
+      html => html.replace('src="./main.js"', 'src="/main.js"'),
+    ],
   };
 
   if (isPwa) {
