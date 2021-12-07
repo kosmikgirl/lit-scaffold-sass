@@ -17,6 +17,7 @@
     "lit": "^2.0.0",
     "navigo": "^8.11.1",
     "pwa-helpers": "^0.9.1",
+    "seng-config": "^1.1.0",
     "seng-device-state-tracker": "^1.1.4"
   },
   "devDependencies": {
