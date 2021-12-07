@@ -3,16 +3,18 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "build": "rollup -c",
+    "build": "lit-localize build && rollup -c",
     "lint": "run-s lint:*",
     "lint:eslint": "eslint 'src/**/*.{js,ts}'",
     "lint:lit-analyzer": "lit-analyzer",
     "format": "prettier \"**/*.{cjs,html,js,json,md,ts}\" --ignore-path ./.eslintignore --write",
     "plop": "plop",
-    "pwa:build": "rollup -c --isPwa && npm run pwa:sw-generate",
+    "locale:extract": "lit-localize extract",
+    "pwa:build": "lit-localize build && rollup -c --isPwa && npm run pwa:sw-generate",
     "pwa:sw-generate": "workbox generateSW workbox-config.js"
   },
   "dependencies": {
+    "@lit/localize": "^0.11.1",
     "@reduxjs/toolkit": "^1.6.2",
     "lit": "^2.0.0",
     "navigo": "^8.11.1",
@@ -20,8 +22,10 @@
     "seng-device-state-tracker": "^1.1.4"
   },
   "devDependencies": {
+    "@lit/localize-tools": "^0.5.0",
     "@rollup/plugin-node-resolve": "^13.0.6",
     "@rollup/plugin-replace": "^3.0.0",
+    "@types/navigo": "^8.1.2",
     "@types/node": "^14.17.34",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",

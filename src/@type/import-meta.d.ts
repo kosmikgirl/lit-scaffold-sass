@@ -1,5 +1,7 @@
+import {Environment} from '../data/enum/environment';
+
 interface ImportMeta {
   env: {
-    MODE: 'development' | 'production';
+    MODE: Environment.DEVELOPMENT | Environment.PRODUCTION;
   };
 }

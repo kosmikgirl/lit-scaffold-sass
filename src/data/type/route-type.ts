@@ -2,7 +2,7 @@ import {RouteDataParam} from '../enum/';
 
 export type RouteData = {[key in RouteDataParam]?: string};
 
-export type RouteTypes = {
+export type RouteType = {
   name: string;
   path: string;
   tag: {
