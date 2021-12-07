@@ -12,6 +12,3 @@ export const {getLocale, setLocale} = configureLocalization({
         : `./generated/${locale}.js`
     ),
 });
-
-// TODO: this is a temporary fix until we have the config files set up
-export const isLocalizationEnabled = true;

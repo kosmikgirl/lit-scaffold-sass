@@ -4,8 +4,9 @@ import {customElement, state} from 'lit/decorators.js';
 import {Match} from 'navigo';
 import router from '../../router/router';
 import {routes} from '../../router/routes';
-import {isLocalizationEnabled} from '../../config/locale-config';
-import {RouteType} from '../../data/type/route-types';
+import {RouteType} from '../../data/type';
+import {configManager} from '../../config/config-manager';
+import {VariableNames} from '../../data/enum/variable-names';
 
 @customElement('router-element')
 export default class RouterElement extends LitElement {
@@ -18,7 +19,7 @@ export default class RouterElement extends LitElement {
   connectedCallback(): void {
     super.connectedCallback();
 
-    const processedRoutes = isLocalizationEnabled
+    const processedRoutes = configManager.getVariable(VariableNames.IS_LOCALE_ENABLED)
       ? routes.map(
           (route: RouteType): RouteType => ({
             ...route,
