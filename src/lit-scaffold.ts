@@ -7,6 +7,7 @@ import './component/router/router-link';
 import './component/router/router-element';
 import './component/nav-element';
 import SEO from './util/seo';
+import './component/image-element';
 
 export class LitScaffold extends connect(store)(LitElement) {
   static get styles() {
