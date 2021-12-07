@@ -2,7 +2,6 @@ import {defineConfig} from 'vite';
 import del from 'rollup-plugin-delete';
 import replace from '@rollup/plugin-replace';
 import json from '@rollup/plugin-json';
-import typescript from 'rollup-plugin-typescript2';
 import resolve from '@rollup/plugin-node-resolve';
 import {terser} from 'rollup-plugin-terser';
 import imagemin from 'rollup-plugin-imagemin';
@@ -15,11 +14,11 @@ export default defineConfig(({mode}) => {
   const isPwa = process.env.buildType === 'pwa';
 
   isPwa &&
-  console.log(
-    '\x1b[32m',
-    `>> You are running the PWA build process.
+    console.log(
+      '\x1b[32m',
+      `>> You are running the PWA build process.
        >> Your build will containt a service worker to provide the necessary behavior.`
-  );
+    );
 
   const config = {
     plugins: [
@@ -30,7 +29,6 @@ export default defineConfig(({mode}) => {
         preventAssignment: true,
       }),
       json(),
-      typescript(),
       resolve(),
       terser({
         ecma: 2020,
@@ -48,10 +46,6 @@ export default defineConfig(({mode}) => {
       }),
       copy({
         patterns: ['./static/**/*', './src/robots.txt'],
-      }),
-      copy({
-        patterns: '**/*.js',
-        rootDir: './src/data/i18n/locale',
       }),
       summary(),
     ],
@@ -97,12 +91,8 @@ export default defineConfig(({mode}) => {
   config.plugins.unshift(html(htmlConfig));
 
   return {
-    build: {
-      rollupOptions: {
-        external: /^lit/,
-        ...config,
-      },
-    },
+    build: {},
+    ...config,
     envPrefix: 'VITE_', // TODO: figure out what a nice prefix is
   };
 });
