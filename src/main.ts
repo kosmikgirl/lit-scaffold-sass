@@ -9,6 +9,10 @@ import './component/nav-element';
 import SEO from './util/seo';
 import './component/image-element';
 
+/*
+ * Change rollup.config.js html replacement settings if you rename this file.
+ */
+
 export class LitScaffold extends connect(store)(LitElement) {
   static get styles() {
     return css`

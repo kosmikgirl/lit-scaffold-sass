@@ -1,2 +1,3 @@
 dist/
+src/data/i18n/locale/generated/
 plop-templates/*

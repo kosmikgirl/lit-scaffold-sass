@@ -3,7 +3,9 @@ import {html} from 'lit/static-html.js';
 import {customElement, state} from 'lit/decorators.js';
 import {Match} from 'navigo';
 import router from '../../router/router';
-import {notFoundRoute, routes} from '../../router/routes';
+import {routes} from '../../router/routes';
+import {isLocalizationEnabled} from '../../config/locale-config';
+import {RouteType} from '../../data/type/route-types';
 
 @customElement('router-element')
 export default class RouterElement extends LitElement {
@@ -16,7 +18,16 @@ export default class RouterElement extends LitElement {
   connectedCallback(): void {
     super.connectedCallback();
 
-    routes.forEach(route => {
+    const processedRoutes = isLocalizationEnabled
+      ? routes.map(
+          (route: RouteType): RouteType => ({
+            ...route,
+            path: `/:lang${route.path}`,
+          })
+        )
+      : routes;
+
+    processedRoutes.forEach(route => {
       router.on({
         [route.path]: {
           as: route.name,
@@ -24,7 +35,7 @@ export default class RouterElement extends LitElement {
         },
       });
     });
-    router.notFound(() => this.notFound());
+
     router.resolve();
   }
 
@@ -37,27 +48,20 @@ export default class RouterElement extends LitElement {
   }
 
   changeRoute(matchedRoute: Match): void {
-    const newRoute = routes.find(
+    const foundRoute = routes.find(
       route => route.name === matchedRoute.route.name
     );
 
-    if (!newRoute) return this.notFound();
+    if (!foundRoute) return;
 
     this.activeRoute = {
-      tag: newRoute.tag,
+      tag: foundRoute.tag,
       routeData: matchedRoute.data || {},
     };
   }
 
-  notFound(): void {
-    this.activeRoute = {tag: notFoundRoute.tag, routeData: {}};
-
-    router.navigate('404');
-  }
-
   render() {
     const {tag, routeData} = this.activeRoute;
-
     return html`<${tag} .routeData=${routeData}></${tag}>`;
   }
 }
