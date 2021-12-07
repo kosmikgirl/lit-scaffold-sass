@@ -3,14 +3,14 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "build": "lit-localize build && rollup -c",
+    "build": "lit-localize build && vite build",
     "lint": "run-s lint:*",
     "lint:eslint": "eslint 'src/**/*.{js,ts}'",
     "lint:lit-analyzer": "lit-analyzer",
     "format": "prettier \"**/*.{cjs,html,js,json,md,ts}\" --ignore-path ./.eslintignore --write",
     "plop": "plop",
     "locale:extract": "lit-localize extract",
-    "pwa:build": "lit-localize build && rollup -c --isPwa && npm run pwa:sw-generate",
+    "pwa:build": "buildType=pwa npm run build && npm run pwa:sw-generate",
     "pwa:sw-generate": "workbox generateSW workbox-config.js"
   },
   "dependencies": {
@@ -23,6 +23,7 @@
   },
   "devDependencies": {
     "@lit/localize-tools": "^0.5.0",
+    "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^13.0.6",
     "@rollup/plugin-replace": "^3.0.0",
     "@types/navigo": "^8.1.2",

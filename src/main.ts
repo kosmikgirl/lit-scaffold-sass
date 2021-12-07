@@ -1,5 +1,5 @@
 import {html, css, LitElement} from 'lit';
-import {state} from 'lit/decorators.js';
+import {state, customElement} from 'lit/decorators.js';
 import {connect} from 'pwa-helpers';
 import store from './store/store';
 import {AppState, setIsInitialized} from './store/module/app';
@@ -13,6 +13,7 @@ import './component/image-element';
  * Change rollup.config.js html replacement settings if you rename this file.
  */
 
+@customElement('lit-scaffold')
 export class LitScaffold extends connect(store)(LitElement) {
   static get styles() {
     return css`
@@ -80,5 +81,3 @@ export class LitScaffold extends connect(store)(LitElement) {
     `;
   }
 }
-
-window.customElements.define('lit-scaffold', LitScaffold);
