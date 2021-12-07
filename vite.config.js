@@ -1,7 +1,6 @@
 import {defineConfig} from 'vite';
 import del from 'rollup-plugin-delete';
 import replace from '@rollup/plugin-replace';
-import json from '@rollup/plugin-json';
 import resolve from '@rollup/plugin-node-resolve';
 import {terser} from 'rollup-plugin-terser';
 import imagemin from 'rollup-plugin-imagemin';
@@ -20,7 +19,7 @@ export default defineConfig(({mode}) => {
        >> Your build will containt a service worker to provide the necessary behavior.`
     );
 
-  const config = {
+  const rollupOptions = {
     plugins: [
       del({targets: 'build/*'}),
       replace({
@@ -28,7 +27,6 @@ export default defineConfig(({mode}) => {
         'process.env.NODE_ENV': JSON.stringify(mode),
         preventAssignment: true,
       }),
-      json(),
       resolve(),
       terser({
         ecma: 2020,
@@ -49,11 +47,6 @@ export default defineConfig(({mode}) => {
       }),
       summary(),
     ],
-    preserveEntrySignatures: 'strict',
-    input: './src/main.ts',
-    output: {
-      dir: 'build',
-    },
   };
 
   let htmlConfig = {
@@ -81,18 +74,21 @@ export default defineConfig(({mode}) => {
       ],
     };
 
-    config.plugins.push(
+    rollupOptions.plugins.push(
       copy({
         patterns: 'manifest.json',
       })
     );
   }
 
-  config.plugins.unshift(html(htmlConfig));
+  rollupOptions.plugins.unshift(html(htmlConfig));
 
   return {
-    build: {},
-    ...config,
+    build: {
+      rollupOptions,
+      outDir: 'build',
+      assetsDir: 'src',
+    },
     envPrefix: 'VITE_', // TODO: figure out what a nice prefix is
   };
 });
