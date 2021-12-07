@@ -52,12 +52,12 @@ export default class RouterElement extends LitElement {
       route => route.name === matchedRoute.route.name
     );
 
-    if (!!foundRoute) {
-      this.activeRoute = {
-        tag: foundRoute.tag,
-        routeData: matchedRoute.data || {},
-      };
-    }
+    if (!foundRoute) return;
+
+    this.activeRoute = {
+      tag: foundRoute.tag,
+      routeData: matchedRoute.data || {},
+    };
   }
 
   render() {
