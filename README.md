@@ -27,7 +27,10 @@
 - [lit-analyzer](https://github.com/runem/lit-analyzer)
 - [Google TypeScript Style](https://github.com/google/gts)
 
+## Major Plugins
+
 ## Documentation
 
 - [Device State Management](./docs/device-state.md)
+- [Configuring SEO, Analytics, and site metadata files](./docs/seo-analytics-metadata.md)
 - [Adding SASS to a Project](./docs/sass.md)

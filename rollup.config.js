@@ -28,7 +28,7 @@ export default commandLineArgs => {
         warnings: true,
       }),
       copy({
-        patterns: 'asset/**/*',
+        patterns: ['asset/**/*', 'robots.txt'],
         rootDir: './src',
       }),
       copy({

@@ -1,4 +1,4 @@
-import {RouteDataParam} from '../enum/route-enums';
+import {RouteDataParam} from '../enum/';
 
 export type RouteData = {[key in RouteDataParam]?: string};
 
@@ -8,4 +8,4 @@ export type RouteType = {
   tag: {
     _$litStatic$: unknown;
   };
-}
+};

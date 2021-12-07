@@ -6,6 +6,10 @@ import PageElement from './abstract/page-element';
 @localized()
 @customElement('home-page')
 export default class HomePage extends PageElement {
+  constructor() {
+    super({title: 'Home'});
+  }
+
   render() {
     return html`<div>${localize('HomePage')}</div>`;
   }
