@@ -1,7 +1,11 @@
-import {Environment} from '../data/enum/environment';
+import {Environment} from '../data/enum';
 
-interface ImportMeta {
-  env: {
-    MODE: Environment.DEVELOPMENT | Environment.PRODUCTION;
-  };
+declare global {
+  interface ImportMeta {
+    env: {
+      MODE: Environment.DEVELOPMENT | Environment.PRODUCTION;
+      VAR_IS_LOCALE_ENABLED: boolean;
+      VAR_STATIC_ROOT: string;
+    };
+  }
 }

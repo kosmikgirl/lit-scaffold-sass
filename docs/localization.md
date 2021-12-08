@@ -22,7 +22,7 @@ There are 2 properties that can be changed:
 }
 ```
 
-To enable the localization please set `isLocalizationEnabled` in `src/config/locale-config.ts` to `true`.
+To enable the localization please set `VariablesNames.IS_LOCALE_ENABLED` in `src/config/config.ts` to `true`.
 
 ## Updating
 

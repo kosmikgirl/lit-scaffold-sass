@@ -1,10 +1,6 @@
 import Navigo, {Match} from 'navigo';
-import {
-  getLocale,
-  setLocale,
-  isLocalizationEnabled,
-} from '../config/locale-config';
-import {RouteNames} from '../data/enum/route-enums';
+import {getLocale, setLocale,} from '../config/locale-config';
+import {RouteNames} from '../data/enum';
 import {allLocales} from '../data/i18n/locale-codes';
 
 const localizePath = (path: string, locale: string) => {
@@ -19,7 +15,7 @@ const router = new Navigo('/');
 
 router.hooks({
   before: (done: Function, match: Match) => {
-    if (!isLocalizationEnabled) return done();
+    if (!import.meta.env.VAR_IS_LOCALE_ENABLED) return done();
 
     const currentLocale = getLocale();
     const routeLocale = match.data?.lang;
@@ -47,7 +43,10 @@ router.hooks({
 });
 
 router.notFound(() => {
-  const routeData = isLocalizationEnabled ? {lang: getLocale()} : {};
+  const routeData = import.meta.env.VAR_IS_LOCALE_ENABLED
+    ? {lang: getLocale()}
+    : {};
+
   router.navigateByName(RouteNames.NOT_FOUND, routeData);
 });
 
