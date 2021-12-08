@@ -8,6 +8,7 @@ import imageminWebp from 'imagemin-webp';
 import {copy} from '@web/rollup-plugin-copy';
 import summary from 'rollup-plugin-summary';
 import html from '@web/rollup-plugin-html';
+import {imagetools} from 'vite-imagetools';
 
 export default defineConfig(({mode}) => {
   const isPwa = process.env.buildType === 'pwa';
@@ -43,7 +44,7 @@ export default defineConfig(({mode}) => {
         },
       }),
       copy({
-        patterns: ['./static/**/*', './src/robots.txt'],
+        patterns: ['./src/robots.txt'],
       }),
       summary(),
     ],
@@ -84,6 +85,7 @@ export default defineConfig(({mode}) => {
   rollupOptions.plugins.unshift(html(htmlConfig));
 
   return {
+    plugins: [imagetools()],
     build: {
       rollupOptions,
       outDir: 'build',
