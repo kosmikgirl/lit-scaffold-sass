@@ -89,6 +89,6 @@ export default defineConfig(({mode}) => {
       outDir: 'build',
       assetsDir: 'src',
     },
-    envPrefix: 'VITE_', // TODO: figure out what a nice prefix is
+    envPrefix: 'VAR_',
   };
 });

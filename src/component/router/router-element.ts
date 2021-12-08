@@ -17,7 +17,7 @@ export default class RouterElement extends LitElement {
   connectedCallback(): void {
     super.connectedCallback();
 
-    const processedRoutes = import.meta.env.VITE_IS_LOCALE_ENABLED
+    const processedRoutes = import.meta.env.VAR_IS_LOCALE_ENABLED
       ? routes.map(
           (route: RouteType): RouteType => ({
             ...route,

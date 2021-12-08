@@ -1,11 +1,11 @@
-import {Environment} from '../data/enum/environment';
+import {Environment} from '../data/enum';
 
 declare global {
   interface ImportMeta {
     env: {
       MODE: Environment.DEVELOPMENT | Environment.PRODUCTION;
-      VITE_IS_LOCALE_ENABLED: boolean;
-      VITE_STATIC_ROOT: string;
+      VAR_IS_LOCALE_ENABLED: boolean;
+      VAR_STATIC_ROOT: string;
     };
   }
 }
