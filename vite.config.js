@@ -3,8 +3,7 @@ import del from 'rollup-plugin-delete';
 import replace from '@rollup/plugin-replace';
 import resolve from '@rollup/plugin-node-resolve';
 import {terser} from 'rollup-plugin-terser';
-import imagemin from 'rollup-plugin-imagemin';
-import imageminWebp from 'imagemin-webp';
+import viteImagemin from 'vite-plugin-imagemin';
 import {copy} from '@web/rollup-plugin-copy';
 import summary from 'rollup-plugin-summary';
 import html from '@web/rollup-plugin-html';
@@ -33,15 +32,6 @@ export default defineConfig(({mode}) => {
         ecma: 2020,
         module: true,
         warnings: true,
-      }),
-      imagemin({
-        preserveTree: true,
-        imageminWebp: {
-          quality: 50,
-        },
-        plugins: {
-          imageminWebp,
-        },
       }),
       copy({
         patterns: ['./src/robots.txt'],
@@ -85,7 +75,38 @@ export default defineConfig(({mode}) => {
   rollupOptions.plugins.unshift(html(htmlConfig));
 
   return {
-    plugins: [imagetools()],
+    plugins: [
+      imagetools(),
+      viteImagemin({
+        exclude: './src/asset/',
+        gifsicle: {
+          optimizationLevel: 7,
+          interlaced: false,
+        },
+        optipng: {
+          optimizationLevel: 7,
+        },
+        mozjpeg: {
+          quality: 50,
+        },
+        pngquant: {
+          quality: [0.8, 0.9],
+          speed: 4,
+        },
+        svgo: {
+          plugins: [
+            {
+              name: 'removeViewBox',
+            },
+            {
+              name: 'removeEmptyAttrs',
+              active: false,
+            },
+          ],
+        },
+      }),
+      ,
+    ],
     build: {
       rollupOptions,
       outDir: 'build',
