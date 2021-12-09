@@ -2,14 +2,14 @@ import {defineConfig} from 'vite';
 import del from 'rollup-plugin-delete';
 import replace from '@rollup/plugin-replace';
 import resolve from '@rollup/plugin-node-resolve';
-import {terser} from 'rollup-plugin-terser';
-import viteImagemin from 'vite-plugin-imagemin';
 import {copy} from '@web/rollup-plugin-copy';
 import summary from 'rollup-plugin-summary';
-import html from '@web/rollup-plugin-html';
+import viteImagemin from 'vite-plugin-imagemin';
 import {imagetools} from 'vite-imagetools';
+import {ViteFaviconsPlugin} from 'vite-plugin-favicon2';
+import {minifyHtml} from 'vite-plugin-html';
 
-export default defineConfig(({mode}) => {
+export default defineConfig(({command, mode}) => {
   const isPwa = process.env.buildType === 'pwa';
 
   isPwa &&
@@ -28,90 +28,82 @@ export default defineConfig(({mode}) => {
         preventAssignment: true,
       }),
       resolve(),
-      terser({
-        ecma: 2020,
-        module: true,
-        warnings: true,
-      }),
       copy({
-        patterns: ['./src/robots.txt'],
+        patterns: ['./robots.txt'],
       }),
       summary(),
     ],
   };
 
-  let htmlConfig = {
-    input: 'index.html',
-    minify: true,
-    extractAssets: false,
-    transformHtml: [
-      // Fix build process references.
-      html => html.replaceAll('href="/src', 'href="'),
-      // Fix 404 when localization is on and there's a trailing slash in the URL.
-      html => html.replace('src="./main.js"', 'src="/main.js"'),
-    ],
-  };
-
-  if (isPwa) {
-    htmlConfig = {
-      ...htmlConfig,
-      transformHtml: [
-        ...htmlConfig.transformHtml,
-        html =>
-          html.replace(
-            '<head>',
-            '<head><link rel="manifest" crossorigin="use-credentials" href="manifest.json">'
-          ),
+  if (command === 'build') {
+    return {
+      plugins: [
+        ViteFaviconsPlugin({
+          logo: './src/favicon.svg',
+          outputPath: 'metadata',
+          favicons: {
+            appName: 'media-monks-lit-scaffold',
+            appDescription: 'Media.Monks Lit Scaffold',
+            developerName: 'Media.Monks',
+            background: '#333',
+            theme_color: '#333',
+            start_url: '/index.html',
+            scope: './',
+            display: 'standalone',
+            icons: {
+              coast: false,
+              yandex: false,
+            },
+          },
+        }),
+        imagetools(),
+        viteImagemin({
+          exclude: ['./src/asset/'],
+          gifsicle: {
+            optimizationLevel: 7,
+            interlaced: false,
+          },
+          optipng: {
+            optimizationLevel: 5,
+          },
+          mozjpeg: {
+            quality: 50,
+          },
+          pngquant: {
+            quality: [0.8, 0.9],
+            speed: 4,
+          },
+          svgo: {
+            plugins: [
+              {
+                name: 'removeViewBox',
+              },
+              {
+                name: 'removeEmptyAttrs',
+                active: false,
+              },
+            ],
+          },
+        }),
+        minifyHtml(),
       ],
+      build: {
+        rollupOptions,
+        outDir: 'build',
+        assetsDir: 'asset',
+        minify: 'terser',
+        TerserOptions: {
+          ecma: 2020,
+          module: true,
+          warnings: true,
+        },
+      },
+      envPrefix: 'VAR_',
     };
-
-    rollupOptions.plugins.push(
-      copy({
-        patterns: 'manifest.json',
-      })
-    );
+  } else if (command === 'serve') {
+    return {
+      plugins: [imagetools()],
+      envPrefix: 'VAR_',
+    };
   }
-
-  rollupOptions.plugins.unshift(html(htmlConfig));
-
-  return {
-    plugins: [
-      imagetools(),
-      viteImagemin({
-        exclude: './src/asset/',
-        gifsicle: {
-          optimizationLevel: 7,
-          interlaced: false,
-        },
-        optipng: {
-          optimizationLevel: 7,
-        },
-        mozjpeg: {
-          quality: 50,
-        },
-        pngquant: {
-          quality: [0.8, 0.9],
-          speed: 4,
-        },
-        svgo: {
-          plugins: [
-            {
-              name: 'removeViewBox',
-            },
-            {
-              name: 'removeEmptyAttrs',
-              active: false,
-            },
-          ],
-        },
-      }),
-      ,
-    ],
-    build: {
-      rollupOptions,
-      outDir: 'build',
-      assetsDir: 'src',
-    },
-    envPrefix: 'VAR_',
-  };
 });
