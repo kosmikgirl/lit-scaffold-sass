@@ -1,13 +1,13 @@
 runtime: python39
 instance_class: F4_1G
-automatic_scaling:
-  min_instances: 50
-  min_idle_instances: 10
-  max_instances: 250
-  max_concurrent_requests: 2
-  max_pending_latency: 1s
-  target_throughput_utilization: 0.5
-default_expiration: '365d'
+#automatic_scaling:
+#  min_instances: 50
+#  min_idle_instances: 10
+#  max_instances: 250
+#  max_concurrent_requests: 2
+#  max_pending_latency: 1s
+#  target_throughput_utilization: 0.5
+#default_expiration: '365d'
 
 handlers:
   # Static assets (anything with a file extension)
