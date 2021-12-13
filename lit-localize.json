@@ -6,7 +6,7 @@
   "output": {
     "mode": "runtime",
     "outputDir": "./src/data/i18n/locale/generated",
-    "localeCodesModule": "./src/data/locale-codes.ts"
+    "localeCodesModule": "./src/data/i18n/locale-codes.ts"
   },
   "interchange": {
     "format": "xliff",
