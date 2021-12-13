@@ -52,5 +52,14 @@
     "typescript": "^4.5.2",
     "vite": "^2.6.4",
     "workbox-cli": "^6.4.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://bitbucket.org/mediamonks/lit-scaffold/src"
+  },
+  "engines": {
+    "node": ">=16",
+    "npm": ">=7",
+    "yarn": "unsupported"
   }
 }
