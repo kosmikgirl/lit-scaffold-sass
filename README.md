@@ -45,9 +45,6 @@ After cloning run `npm install` and `npm run dev` in the project root to get sta
 - [lit-analyzer](https://github.com/runem/lit-analyzer)
 - [Google TypeScript Style](https://github.com/google/gts)
 
-## Major Plugins
-// todo: is this necessary?
-
 ## Documentation
 
 - [Generate component from template](./docs/template-generation.md);
