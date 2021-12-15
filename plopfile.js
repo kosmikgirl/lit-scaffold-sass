@@ -1,4 +1,23 @@
 module.exports = function (plop) {
+  plop.setGenerator('page', {
+    description: 'add empty lit page',
+    prompts: [
+      {
+        type: 'input',
+        name: 'name',
+        message: 'Whate is the name of your page (example: `home-page`)?'
+      }
+    ],
+    actions: [
+      {
+        type: 'add',
+        path: 'src/page/{{dashCase name}}.ts',
+        templateFile: 'plop-templates/page.ts',
+        skipIfExists: true,
+      },
+    ],
+  });
+
   plop.setGenerator('component', {
     description: 'add empty lit component',
     prompts: [
