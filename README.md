@@ -7,7 +7,7 @@
 5. [Major plugins](#major-plugins)
 6. [Documentation](#documentation)
 
-## Prequisite
+## Prerequisite
 
 - [Node v16.x.x](https://nodejs.org/en/download/) or higher
 - [NPM v8.x.x](https://nodejs.org/en/download/) or higher
