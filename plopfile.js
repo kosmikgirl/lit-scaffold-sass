@@ -17,4 +17,23 @@ module.exports = function (plop) {
       },
     ],
   });
+
+  plop.setGenerator('slice', {
+    description: 'add empty store slice',
+    prompts: [
+      {
+        type: 'input',
+        name: 'name',
+        message: 'What is the name of your slice (example: `database`)?'
+      },
+    ],
+    actions: [
+      {
+        type: 'add',
+        path: 'src/store/module/{{dashCase name}}.ts',
+        templateFile: 'plop-templates/slice.ts',
+        skipIfExists: true,
+      },
+    ],
+  });
 };
