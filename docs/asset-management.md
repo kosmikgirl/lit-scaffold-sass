@@ -1,21 +1,28 @@
 # Asset Management
-There are 3 different types of assets that this scaffold supports.
+
+This scaffolds supports 3 different types of assets:
 
 ## Public
 
-The public assets live in `./public` and these assets will be put in the root of the build folder once the app is built.
+Found in `./public`.
+The build process places these assets in the root folder.
 
-Assets like `robots.txt` and `sitemap.xml` should be put here.
+Place assets like `robots.txt` and `sitemap.xml` here.
 
 ## Static
 
-These assets live in `./static` and are files that are not imported inside the app. 
+Found in`./static`.
+For static files that are not imported by the app's modules.
 
-Assets like `favicon.svg` should be put here.
+Place assests like images or fonts here. `favicon.svg` is an example, and use them like so:
 
+`<img src="/static/image.jpg" />`
 
 ## Asset
 
-These assets live in `./src/asset` and are files that are imported somewhere in the app.
+Found in `./src/asset`.
+For static files that are imported somewhere in the app, and used like so:
 
-Assets like `fonts`, `images`, `svgs` should be put here.
+`import \* image as './asset/image.jpg`
+
+For the same type of files than `/static`.

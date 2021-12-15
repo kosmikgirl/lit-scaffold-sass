@@ -1,6 +1,6 @@
 ## Configuring Google Tag Manager Analytics
 
-This scaffold is conifgured to use Google Tag Manager by defalut in the `index.html` file. Update this file by replacing `GTM-XXXXXX` with the websites GTM code.
+Uncomment the pertinent scripts in the `index.html` file to enable GTM. Remember to replace `GTM-XXXXXX` with the true GTM id.
 
 #### Documentation
 
@@ -25,7 +25,7 @@ This scaffold is conifgured to use Google Tag Manager by defalut in the `index.h
 
 ## Updating the robots.txt
 
-By default the `robots.txt` file is set to allow all web crawlers. You can update this as per your needs from the documentation below.
+The `robots.txt` file is set to allow all web crawlers by default. You can update this as per your needs following the documentation below.
 
 #### Documentation
 
