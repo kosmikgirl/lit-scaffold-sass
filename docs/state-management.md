@@ -70,7 +70,7 @@ class SomeClass {
 
 ## Retrieving state from store
 
-Components need to be connected to the store in order to be able to listen to state changes. This can be achieved as follows:
+Connect components to the store in order to be able to listen to state changes:
 
 ```typescript
 class SomeClass extends connect(store)(LitElement) {
