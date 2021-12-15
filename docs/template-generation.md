@@ -14,4 +14,4 @@ You can generate 3 standard templates:
 
 ## Adding templates
 
-To add a custom templates, please read the documentation on their [website](https://plopjs.com/documentation/#your-first-plopfile).
+To add custom templates, please read the documentation on their [website](https://plopjs.com/documentation/#your-first-plopfile).
