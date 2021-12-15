@@ -11,7 +11,7 @@ export class NavElement extends LitElement {
         .to=${{
           name: RouteNames.ABOUT,
           routeData: {
-            [RouteDataParam.id]: 'demo',
+            [RouteDataParam.ID]: 'demo',
           },
         }}
         title="AboutPage"

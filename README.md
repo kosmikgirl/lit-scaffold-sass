@@ -49,10 +49,11 @@ After cloning run `npm install` and `npm run dev` in the project root to get sta
 // todo: is this necessary?
 
 ## Documentation
-- todo: template generation
-- todo: configuration
-- todo: state management
-- todo: asset management
+
+- [Generate component from template](./docs/template-generation.md);
+- [State management](./docs/state-management.md)
+- [Asset management](./docs/asset-management.md)
+- [Routing](./docs/routing.md)
 - [Localization](./docs/localization.md)
 - [Environment variables](./docs/environments.md)
 - [Device State Management](./docs/device-state.md)
