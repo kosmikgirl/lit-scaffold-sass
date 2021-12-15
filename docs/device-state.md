@@ -1,11 +1,11 @@
 # Device State Management
 
-The browsers breakpoint tracking is handled by [seng device state tracker](https://github.com/mediamonks/seng-device-state-tracker) in this skeleton.
+[Seng device state tracker](https://github.com/mediamonks/seng-device-state-tracker) handles browser breakpoint tracking in this scaffold.
 
 ## Configuration
 
 - Open the config file found here: `./src/data/seng/deviceStateConfig.ts`.
-- Update the breakpoint pixel values in the `mediaQueries` variable to match the breakpoints you are using with your CSS.
+- Update the breakpoint pixel values in the `mediaQueries` variable to match the breakpoints that you are using with your CSS.
 
 ## Usage
 

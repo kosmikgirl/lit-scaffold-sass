@@ -1,17 +1,17 @@
 # Localization
 
-The localization is set up with [Lit Localize](https://lit.dev/docs/localization/overview/).
+We use [Lit Localize](https://lit.dev/docs/localization/overview/) for localization.
 
-Please follow the instructions on that page for adding localization to components.
+Follow the instructions on that page to localize components.
 
 ## Configuration
 
-The configuration is done in the `lit-localize.json` in the root of the project.
+You can find the configuration in the `lit-localize.json` file, located at the root of the project.
 
-There are 2 properties that can be changed:
+There are 2 customizable properties:
 
-1. `sourceLocale` This is the locale that will be set by default
-2. `targetLocales` This is a list of all available locales for the project
+1. `sourceLocale`: The default locale.
+2. `targetLocales`: A list of all available locales.
 
 ```json
 {
@@ -22,23 +22,19 @@ There are 2 properties that can be changed:
 }
 ```
 
-To enable the localization please set `VariablesNames.IS_LOCALE_ENABLED` in `src/config/config.ts` to `true`.
+Set `VAR_IS_LOCALE_ENABLED` to `true` in the `.env` file to enable localized routes.
 
 ## Updating
 
-To update the localization after localization has been added to one or more components please follow the
-following steps:
+You need to extract changes in order to update localized text after setting up localization:
 
 ### Extracting
 
-First the new localizations need to be extracted from the components and this is done with the following
-command `npm run locale:extract`
+Extract new sections marked for localization from the components with the following command: `npm run locale:extract`.
 
-This will go through the entire project and get all the text that needs to be localized and puts them into
-separate files for each localization.
+This goes through the entire project to get all the text that needs to be localized, and places it into xlf files. One per locale.
 
-After the localization text is extracted, the text for every locale can be updated in the files that are in
-`src/data/i18n/locale/{locale}.xlf`.
+After the extraction process finishes, the text for every locale can be updated in the files located at: `src/data/i18n/locale/{locale}.xlf`.
 
 The contents of the file will look similar to this:
 
@@ -55,13 +51,13 @@ The contents of the file will look similar to this:
 </xliff>
 ```
 
-To add a localization manually, the following can be updated
+Add localizations manually by setting a target for each source. For example:
 
 ```xml
 <target>Página Principal</target>
 ```
 
-So it would look like this
+End result:
 
 ```xml
 <trans-unit id="s3ca5029ac693b7d5">
@@ -74,11 +70,9 @@ There are also tools available online to update these files.
 
 ### Building
 
-After the extraction and updating of the localization texts, the updates need to be built before they show up
-in the application. This is automatically run during the regular build process.
+After the extraction and updating of the localization texts, the updates are automatically run during the regular build process.
 
-This will generate files that are used to get the correct text for the correct set locale.
+This will generate files that are used to get the right text for each set locale. You can find these files in `src/data/i18n/locale/generated`.
+Do not make manual changes to them, as they will be overwritten whenever a new build is created.
 
-These files are saved in `src/data/i18n/locale/generated` and should not be changed manually because any changes
-will be overwritten whenever a new build is created.
-The automatically generated files are ignored and not pushed to the repository.
+This scaffold ignores the files inside the `generated` folder by default, so you will not be pushing them to the repository.

@@ -1,14 +1,17 @@
 # Template generation
 
-This scaffold is using [plop](https://plopjs.com/) as a template generator.
+This scaffold uses [plop](https://plopjs.com/) as a template generator.
 
 ## Running generator
-Run `npm run plop` to run the generator. After that follow the prompts to generate a new template.
 
-There are 3 standard templates that can be generated
-1. `page`: generates an empty page 
-2. `component`: generates an empty component
-3. `slice`: generates an empty slice
+Run `npm run plop` and follow the prompts to generate a new template.
+
+You can generate 3 standard templates:
+
+1. `page`: For an empty page
+2. `component`: For an empty component
+3. `slice`: For an empty slice
 
 ## Adding templates
-To add a custom template please read the documentation on the [website](https://plopjs.com/documentation/#your-first-plopfile).
+
+To add a custom templates, please read the documentation on their [website](https://plopjs.com/documentation/#your-first-plopfile).

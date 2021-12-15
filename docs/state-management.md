@@ -1,10 +1,13 @@
 # State management
+
 The state management is set up with [Redux toolkit](https://redux.js.org/tutorials/typescript-quick-start).
 
 This toolkit allows the user to create slices to separate states into smaller manageable chunks.
 
 ## Slice
+
 A slice looks like the following:
+
 ```typescript
 export type NameOfState = {
   state: string;
@@ -13,7 +16,7 @@ export type NameOfState = {
 export const nameOfSlice = createSlice({
   name: 'nameOfSlice',
   initialState: {
-    state: ''
+    state: '',
   },
   reducers: {
     setState(state: NameOfState, action: PayloadAction<string>) {
@@ -33,9 +36,10 @@ export default nameOfSlice.reducer;
 
 ## Creating a new slice
 
-To create a new slice run `npm run plop` and choose `slice`. This will generate a new slice and create a new file in `./src/store/module`.
+To create a new slice, run `npm run plop` and choose `slice`. This will generate a new slice and create a new file in `./src/store/module`.
 
-After that go to `./src/store/store.ts` and add the new slice as follows:
+After that, go to `./src/store/store.ts` and add the new slice as follows:
+
 ```typescript
 ...
 import nameOfSliceReducer from './module/name-of-slice.ts';
@@ -48,9 +52,10 @@ const store = configureStore({
 });
 ```
 
-## Submitting state to store
+## Submitting a state change to the gobal store
 
-To submit state to the store import the action that is required for updating the state and call it where the state needs to be updated. For example:
+To change a value in the global state, import and execute an action that updates it. For example:
+
 ```typescript
 import {setState} from '../store/module/name-of-slice';
 
@@ -65,10 +70,10 @@ class SomeClass {
 
 ## Retrieving state from store
 
-A class needs to be connected to the store in order to be able to listen to state changes. This can be done as follows:
+Components need to be connected to the store in order to be able to listen to state changes. This can be achieved as follows:
+
 ```typescript
 class SomeClass extends connect(store)(LitElement) {
-
   @state()
   private state = '';
 
@@ -78,4 +83,4 @@ class SomeClass extends connect(store)(LitElement) {
 }
 ```
 
-This will connect the state from the store to the class and will re-render whenever the state changes.
+This will connect the state from the store to the component and will trigger a re-render whenever the state changes.

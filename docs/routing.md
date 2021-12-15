@@ -4,26 +4,28 @@ The routing is set up using [navigo](https://github.com/krasimir/navigo).
 
 ## Routes
 
-Each route is defined in `./src/router/routes.ts`. 
+Each route is defined in `./src/router/routes.ts`.
 
-A route exists of the following:
-```typescript
-{
-  name: RouteNames.HOME;
-  path: '/';
-  tag:  literal`home-page`;
-}
-```
+A route consists of the following:
 
 - `name`: is used to navigate to a specific route within the application.
 - `path`: speaks for itself.
 - `tag`: is the name of page that should be rendered
 
+For example:
+
+```typescript
+{
+  name: RouteNames.HOME;
+  path: '/';
+  tag: literal`home-page`;
+}
+```
+
 ### Adding a route
 
-There are a few things that need to be added to create a new route.
+First, add a new route name to the `RouteNames` enum in `./src/data/enum/route.ts` like so:
 
-First add a new route name to the `RouteNames` enum in `./src/data/enum/route.ts` like so:
 ```typescript
 export enum RouteNames {
   ...,
@@ -31,7 +33,8 @@ export enum RouteNames {
 }
 ```
 
-Then go to `./src/router/routes.ts` to make the route accessible to the router
+Then go to `./src/router/routes.ts` to make the route accessible to the router:
+
 ```typescript
 ...
 import `../page/name-of-page`;
@@ -46,49 +49,54 @@ export const routes: ReadonlyArray<RouteType> = [
 ];
 ```
 
-After that the router will have access to the new route.
+After that, the router will have access to the new route.
 
 ### Adding parameters to a route
 
-Some routes will require a dynamic route based on for example an id or slug. This is possible by doing the following.
+Some routes will require a dynamic route based on, for example, an id or slug. This is possible by doing the following:
 
 ```typescript
 path: `/path-to-name-of-page/:${RouteDataParam.ID || RouteDataParam.SLUG}`,
 ```
 
-By default `ID` and `SLUG` are defined as valid parameters. 
+By default `ID` and `SLUG` are defined as valid parameters.
 
-If any other parameters are required these can be added in `./src/data/enum/route.ts` and adding the new parameter to `enum RouteDataParam`.
+Other parameters can be added by editing `enum RouteDataParam`, in `./src/data/enum/route.ts`.
 
 ### Accessing parameters from a route
 
-To access any data from the route the page class needs to extend `PageElement`. Once that is the case all data from the route can be accessed as follows:
+Make your page component extend from `PageElement`. This way, route data can be accessed as follows:
+
 ```typescript
-this.routeData[RouteDataParam.ID] 
+this.routeData[RouteDataParam.ID];
 ```
 
 ## Localized routes
 
-To enable localized routes make sure that `VAR_IS_LOCALE_ENABLED` is set to `true` in the `.env` file. 
+Set `VAR_IS_LOCALE_ENABLED` to `true` in the `.env` file to enable localized routes.
 
 This will automatically prefix the route with the set default locale.
 
 ## Navigation
 
-There are 2 ways to navigate to a specific route. Both ways are using the `<router-link>` element.
+### External navigation
 
-The `<router-link>` element is preferred for local navigation. If there's some navigation that goes to an external url please use `<a href="">` in stead.
+For external navigation, please use `<a href="">`.
 
-Navigating within the website can be done as follows:
+### Internal navigation
+
+The `<router-link>` element is preferred for internal navigation. It provides two different implementations:
+
+- Use of destination route's path.
+
 ```typescript jsx
-<router-link 
-  to="/path-to-name-of-page"
-  title="Name of page"
->
+<router-link to="/path-to-name-of-page" title="Name of page">
   Go to name of page
 </router-link>
 ```
-or
+
+- Use of destination route's assigned name.
+
 ```typescript jsx
 <router-link
   to=${{ name: RouteNames.NAME_OF_PAGE }}
@@ -98,21 +106,21 @@ or
 </router-link>
 ```
 
-### Navigating with parameters
+### Internal navigation with parameters
 
 Navigating with parameters can be done as follows:
+
 ```typescript jsx
-<router-link 
-  to="/path-to-name-of-page/parameter"
-  title="Name of page"
->
+<router-link to="/path-to-name-of-page/parameter" title="Name of page">
   Go to name of page
 </router-link>
 ```
+
 or
+
 ```typescript jsx
 <router-link
-  to=${{ 
+  to=${{
     name: RouteNames.NAME_OF_PAGE,
     routeData: {
       [RouteDataParam.ID]: 'parameter',
