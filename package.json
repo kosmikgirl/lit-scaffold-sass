@@ -4,6 +4,7 @@
   "scripts": {
     "dev": "vite",
     "build": "lit-localize build && vite build",
+    "deploy": "npm run build && gcloud app deploy app.yaml --project ${npm_package_name} --promote --quiet",
     "lint": "run-s lint:*",
     "lint:eslint": "eslint 'src/**/*.{js,ts}'",
     "lint:lit-analyzer": "lit-analyzer",
@@ -52,5 +53,14 @@
     "vite-plugin-html": "^2.1.1",
     "vite-plugin-imagemin": "^0.4.6",
     "workbox-cli": "^6.4.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://bitbucket.org/mediamonks/lit-scaffold/src"
+  },
+  "engines": {
+    "node": ">=16",
+    "npm": ">=7",
+    "yarn": "unsupported"
   }
 }
