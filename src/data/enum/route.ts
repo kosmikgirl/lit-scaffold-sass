@@ -1,6 +1,6 @@
 export enum RouteDataParam {
-  id = 'id',
-  slug = 'slug',
+  ID = 'id',
+  SLUG = 'slug',
 }
 
 export enum RouteNames {

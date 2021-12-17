@@ -64,8 +64,6 @@ export class LitScaffold extends connect(store)(LitElement) {
   connectedCallback() {
     super.connectedCallback();
     store.dispatch(setIsInitialized(true));
-
-    console.debug('[main] connectedCallback', import.meta.env);
   }
 
   render() {

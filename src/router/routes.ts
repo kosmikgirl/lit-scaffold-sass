@@ -13,7 +13,7 @@ export const routes: ReadonlyArray<RouteType> = [
   },
   {
     name: RouteNames.ABOUT,
-    path: `/about/:${RouteDataParam.id}`,
+    path: `/about/:${RouteDataParam.ID}`,
     tag: literal`about-page`,
   },
   {
