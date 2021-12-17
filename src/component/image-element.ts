@@ -1,5 +1,5 @@
 import {css, html, LitElement} from 'lit';
-import {customElement, property, state} from 'lit/decorators.js';
+import {customElement, property, state, query} from 'lit/decorators.js';
 
 @customElement('image-element')
 export class ImageElement extends LitElement {
@@ -12,10 +12,33 @@ export class ImageElement extends LitElement {
   @state() private imageArray: Array<string> = [];
   @state() private srcSet: string = '';
 
+  @query('img') $img: HTMLImageElement;
+
+  private lazyLoadObserver;
+
+  constructor() {
+    super();
+
+    this.lazyLoadObserver = new IntersectionObserver(
+      ([image]) => this.loadIntersectedImage(image)
+    );
+  }
+
+  disconnectedCallback(): void {
+    super.disconnectedCallback();
+
+    this.lazyLoadObserver.disconnect();
+  }
+
+  protected firstUpdated(): void {
+    this.lazyLoadObserver.observe(this.$img);
+  }
+
   static get styles() {
     return css`
       picture {
         display: block;
+        margin-top: 200vh;
       }
 
       img {
@@ -24,6 +47,20 @@ export class ImageElement extends LitElement {
         display: block;
       }
     `;
+  }
+
+  async loadIntersectedImage(image: IntersectionObserverEntry) {
+    if (!image.isIntersecting) return;
+
+    const $img = image.target as HTMLImageElement;
+
+    if (!$img) return;
+
+    $img.sizes = this.$img.dataset.sizes as string;
+    $img.srcset = this.$img.dataset.srcset as string;
+    $img.src = this.$img.dataset.src as string;
+
+    this.lazyLoadObserver.unobserve(this.$img);
   }
 
   async loadImage() {
@@ -56,9 +93,9 @@ export class ImageElement extends LitElement {
     return html`
       <picture>
         <img
-          sizes="(max-width: 1400px) 100vw, 1400px"
-          srcset=${this.srcSet}
-          src=${this.imageArray[this.imageArray.length - 1]}
+          data-sizes="(max-width: 1400px) 100vw, 1400px"
+          data-srcset=${this.srcSet}
+          data-src=${this.imageArray[this.imageArray.length - 1]}
           alt=${this.alt}
         />
       </picture>
