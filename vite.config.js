@@ -43,7 +43,7 @@ export default defineConfig(({mode}) => {
         },
       }),
       copy({
-        patterns: ['./static/**/*', './src/robots.txt'],
+        patterns: ['./static/**/*'],
       }),
       summary(),
     ],
