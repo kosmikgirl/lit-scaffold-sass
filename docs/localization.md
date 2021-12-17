@@ -72,7 +72,8 @@ There are also tools available online to update these files.
 
 After the extraction and updating of the localization texts, the updates are automatically run during the regular build process.
 
-This will generate files that are used to get the right text for each set locale. You can find these files in `src/data/i18n/locale/generated`.
+This will generate files that are used to get the right text for each locale set in the `targetLocales` array from the configuration file.
+You can find the resulting files in `src/data/i18n/locale/generated`.
 Do not make manual changes to them, as they will be overwritten whenever a new build is created.
 
 This scaffold ignores the files inside the `generated` folder by default, so you will not be pushing them to the repository.
