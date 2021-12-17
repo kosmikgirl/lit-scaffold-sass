@@ -1,3 +1,3 @@
 export * from './environment';
-export * from './route-enum';
+export * from './route';
 export * from './seo-enum';

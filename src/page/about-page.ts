@@ -11,7 +11,7 @@ export default class AboutPage extends PageElement {
 
   render() {
     return html`<div>
-      AboutPage ${this.routeData?.[RouteDataParam.id] || 'no id'}
+      AboutPage ${this.routeData?.[RouteDataParam.ID] || 'no id'}
     </div>`;
   }
 }

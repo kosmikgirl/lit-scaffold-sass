@@ -29,7 +29,7 @@ export default defineConfig(({command, mode}) => {
       }),
       resolve(),
       copy({
-        patterns: ['./robots.txt'],
+        patterns: ['./static/**/*'],
       }),
       summary(),
     ],
