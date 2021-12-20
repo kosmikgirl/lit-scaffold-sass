@@ -1,6 +1,6 @@
 # Asset Management
 
-This scaffolds supports 3 different types of assets:
+This scaffold supports 3 different types of assets:
 
 ## Public
 
@@ -23,6 +23,6 @@ Place assests like images or fonts here. `favicon.svg` is an example, and use th
 Found in `./src/asset`.
 For static files that are imported somewhere in the app, and used like so:
 
-`import \* image as './asset/image.jpg`
+`import \* as image from './asset/image.jpg`
 
 For the same type of files than `/static`.
