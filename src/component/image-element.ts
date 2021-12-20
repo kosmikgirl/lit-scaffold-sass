@@ -63,7 +63,7 @@ export class ImageElement extends LitElement {
     this.lazyLoadObserver.unobserve(this.$img);
   }
 
-  async loadImage() {
+  async importImage() {
     const image = await import(
       /* @vite-ignore */
       `../asset/${this.src}?w=${this.sizes.join(';')}&${this.type}`
@@ -86,7 +86,7 @@ export class ImageElement extends LitElement {
     )
       return;
 
-    await this.loadImage();
+    await this.importImage();
   }
 
   render() {
