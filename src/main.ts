@@ -3,10 +3,10 @@ import {state, customElement} from 'lit/decorators.js';
 import {connect} from 'pwa-helpers';
 import store from './store/store';
 import {AppState, setIsInitialized} from './store/module/app';
+import SEO from './util/seo';
 import './component/router/router-link';
 import './component/router/router-element';
 import './component/nav-element';
-import SEO from './util/seo';
 import './component/image-element';
 
 /*
@@ -74,6 +74,12 @@ export class LitScaffold extends connect(store)(LitElement) {
       </header>
       <main>
         <router-element></router-element>
+        <image-element 
+          src="image/cat.jpg" 
+          .sizes=${[300, 500, 700, 1000, 1200, 1400]}
+          type="webp"
+          alt="Cat"
+        ></image-element>
       </main>
       <footer>Footer</footer>
     `;
