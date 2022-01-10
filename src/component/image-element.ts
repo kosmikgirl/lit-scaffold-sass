@@ -1,26 +1,23 @@
 import {css, html, LitElement} from 'lit';
 import {customElement, property, state, query} from 'lit/decorators.js';
+import imageSizeDirective from '../data/constant/image-size-directive';
 
 @customElement('image-element')
 export class ImageElement extends LitElement {
-  @property() src: string = '';
+  @property({type: Array}) imageSet: Array<string> = [];
   @property() alt: string = '';
-  @property() type: 'jpg' | 'png' | 'webp' = 'webp';
-  @property({type: Array})
-  sizes: ReadonlyArray<number> = [300, 500, 700, 1000, 1200, 1400];
 
-  @state() private imageArray: Array<string> = [];
   @state() private srcSet: string = '';
 
   @query('img') $img: HTMLImageElement;
 
-  private lazyLoadObserver;
+  private lazyLoadObserver: IntersectionObserver;
 
   constructor() {
     super();
 
     this.lazyLoadObserver = new IntersectionObserver(
-      ([image]) => this.loadIntersectedImage(image)
+      ([intersectedImage]) => this.loadIntersectedImage(intersectedImage)
     );
   }
 
@@ -38,7 +35,6 @@ export class ImageElement extends LitElement {
     return css`
       picture {
         display: block;
-        margin-top: 200vh;
       }
 
       img {
@@ -56,37 +52,24 @@ export class ImageElement extends LitElement {
 
     if (!$img) return;
 
+    if (this.lazyLoadObserver) this.lazyLoadObserver.unobserve(this.$img);
+
     $img.sizes = this.$img.dataset.sizes as string;
     $img.srcset = this.$img.dataset.srcset as string;
     $img.src = this.$img.dataset.src as string;
-
-    this.lazyLoadObserver.unobserve(this.$img);
   }
 
-  async importImage() {
-    const image = await import(
-      /* @vite-ignore */
-      `../asset/${this.src}?w=${this.sizes.join(';')}&${this.type}`
-    );
-
-    if (!image.default) return;
-
-    this.imageArray = image.default;
-    this.srcSet = this.imageArray.reduce(
-      (result, image, index) => `${result}${image} ${this.sizes[index]}w, `,
-      ''
-    );
-  }
-
-  async willUpdate(changedProperties: Map<string, boolean>) {
+  willUpdate(changedProperties: Map<string, boolean>) {
     if (
       !changedProperties.has('src') &&
-      !changedProperties.has('sizes') &&
-      !changedProperties.has('type')
+      !changedProperties.has('sizes')
     )
       return;
 
-    await this.importImage();
+    this.srcSet = this.imageSet.reduce(
+      (result, image, index) => `${result}${image} ${imageSizeDirective[index]}w, `,
+      ''
+    );
   }
 
   render() {
@@ -95,7 +78,7 @@ export class ImageElement extends LitElement {
         <img
           data-sizes="(max-width: 1400px) 100vw, 1400px"
           data-srcset=${this.srcSet}
-          data-src=${this.imageArray[this.imageArray.length - 1]}
+          data-src=${this.imageSet[this.imageSet.length - 1]}
           alt=${this.alt}
         />
       </picture>
