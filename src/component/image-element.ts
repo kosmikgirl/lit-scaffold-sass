@@ -17,7 +17,7 @@ export class ImageElement extends LitElement {
     super();
 
     this.lazyLoadObserver = new IntersectionObserver(([intersectedImage]) =>
-      this.loadIntersectedImage(intersectedImage),
+      this.loadIntersectedImage(intersectedImage)
     );
   }
 
@@ -59,16 +59,13 @@ export class ImageElement extends LitElement {
     $img.src = this.$img.dataset.src as string;
   }
 
-  willUpdate(changedProperties: Map<string, boolean>) {
-    if (
-      !changedProperties.has('src') &&
-      !changedProperties.has('sizes')
-    )
-      return;
+  willUpdate(changedProps: Map<string, boolean>) {
+    if (!changedProps.has('src') && !changedProps.has('sizes')) return;
 
     this.srcSet = this.imageSet.reduce(
-      (result, image, index) => `${result}${image} ${imageSizeDirective[index]}w, `,
-      '',
+      (result, image, index) =>
+        `${result}${image} ${imageSizeDirective[index]}w, `,
+      ''
     );
   }
 

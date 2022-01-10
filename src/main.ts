@@ -7,8 +7,7 @@ import SEO from './util/seo';
 import './component/router/router-element';
 import './component/nav-element';
 import './component/image-element';
-
-import CatImage from'./asset/image/cat.jpg?webp';
+import CatImage from './asset/image/cat.jpg?webp';
 
 /*
  * Change rollup.config.js html replacement settings if you rename this file.
@@ -75,10 +74,7 @@ export class LitScaffold extends connect(store)(LitElement) {
       </header>
       <main>
         <router-element></router-element>
-        <image-element
-          .imageSet=${CatImage}
-          alt="Cat"
-        ></image-element>
+        <image-element .imageSet=${CatImage} alt="Cat"></image-element>
       </main>
       <footer>Footer</footer>
     `;
