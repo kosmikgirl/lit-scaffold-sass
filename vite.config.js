@@ -2,12 +2,12 @@ import {defineConfig} from 'vite';
 import del from 'rollup-plugin-delete';
 import replace from '@rollup/plugin-replace';
 import resolve from '@rollup/plugin-node-resolve';
-import {copy} from '@web/rollup-plugin-copy';
 import summary from 'rollup-plugin-summary';
 import viteImagemin from 'vite-plugin-imagemin';
 import {imagetools} from 'vite-imagetools';
 import {ViteFaviconsPlugin} from 'vite-plugin-favicon2';
 import {minifyHtml} from 'vite-plugin-html';
+import imageSizeDirective from './src/data/constant/image-size-directive';
 
 export default defineConfig(({command, mode}) => {
   const isPwa = process.env.buildType === 'pwa';
@@ -28,9 +28,6 @@ export default defineConfig(({command, mode}) => {
         preventAssignment: true,
       }),
       resolve(),
-      copy({
-        patterns: ['./static/**/*'],
-      }),
       summary(),
     ],
   };
@@ -56,7 +53,9 @@ export default defineConfig(({command, mode}) => {
             },
           },
         }),
-        imagetools(),
+        imagetools({
+          defaultDirectives: [['width', imageSizeDirective.join(';')]],
+        }),
         viteImagemin({
           exclude: ['./src/asset/'],
           gifsicle: {
@@ -102,7 +101,11 @@ export default defineConfig(({command, mode}) => {
     };
   } else if (command === 'serve') {
     return {
-      plugins: [imagetools()],
+      plugins: [
+        imagetools({
+          defaultDirectives: [['width', imageSizeDirective.join(';')]],
+        }),
+      ],
       envPrefix: 'VAR_',
     };
   }
