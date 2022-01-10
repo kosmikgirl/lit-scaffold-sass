@@ -19,8 +19,8 @@ export class ImageElement extends LitElement {
   constructor() {
     super();
 
-    this.lazyLoadObserver = new IntersectionObserver(
-      ([image]) => this.loadIntersectedImage(image)
+    this.lazyLoadObserver = new IntersectionObserver(([image]) =>
+      this.loadIntersectedImage(image)
     );
   }
 
