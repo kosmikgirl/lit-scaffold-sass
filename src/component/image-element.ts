@@ -16,8 +16,8 @@ export class ImageElement extends LitElement {
   constructor() {
     super();
 
-    this.lazyLoadObserver = new IntersectionObserver(
-      ([intersectedImage]) => this.loadIntersectedImage(intersectedImage)
+    this.lazyLoadObserver = new IntersectionObserver(([intersectedImage]) =>
+      this.loadIntersectedImage(intersectedImage),
     );
   }
 
@@ -68,7 +68,7 @@ export class ImageElement extends LitElement {
 
     this.srcSet = this.imageSet.reduce(
       (result, image, index) => `${result}${image} ${imageSizeDirective[index]}w, `,
-      ''
+      '',
     );
   }
 
