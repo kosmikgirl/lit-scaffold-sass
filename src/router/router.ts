@@ -1,5 +1,5 @@
 import Navigo, {Match} from 'navigo';
-import {getLocale, setLocale,} from '../config/locale-config';
+import {getLocale, setLocale} from '../config/locale-config';
 import {RouteNames} from '../data/enum';
 import {allLocales} from '../data/i18n/locale-codes';
 
