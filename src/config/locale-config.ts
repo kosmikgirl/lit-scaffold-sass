@@ -7,3 +7,5 @@ export const {getLocale, setLocale} = configureLocalization({
   loadLocale: (locale: string) =>
     import(/* @vite-ignore */ `../data/i18n/locale/generated/${locale}.js`),
 });
+
+export const isLocaleEnabled = import.meta.env.VAR_IS_LOCALE_ENABLED === 'true';

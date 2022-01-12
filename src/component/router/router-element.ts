@@ -2,6 +2,7 @@ import {LitElement} from 'lit';
 import {html} from 'lit/static-html.js';
 import {customElement, state} from 'lit/decorators.js';
 import {Match} from 'navigo';
+import {isLocaleEnabled} from '../../config/locale-config';
 import router from '../../router/router';
 import {routes} from '../../router/routes';
 import {RouteType} from '../../data/type';
@@ -17,7 +18,7 @@ export default class RouterElement extends LitElement {
   connectedCallback(): void {
     super.connectedCallback();
 
-    const processedRoutes = import.meta.env.VAR_IS_LOCALE_ENABLED
+    const processedRoutes = isLocaleEnabled
       ? routes.map(
           (route: RouteType): RouteType => ({
             ...route,
