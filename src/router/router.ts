@@ -15,7 +15,7 @@ const router = new Navigo('/');
 
 router.hooks({
   before: (done: Function, match: Match) => {
-    if (!import.meta.env.VAR_IS_LOCALE_ENABLED) return done();
+    if (import.meta.env.VAR_IS_LOCALE_ENABLED === 'false') return done();
 
     const currentLocale = getLocale();
     const routeLocale = match.data?.lang;
@@ -43,9 +43,9 @@ router.hooks({
 });
 
 router.notFound(() => {
-  const routeData = import.meta.env.VAR_IS_LOCALE_ENABLED
-    ? {lang: getLocale()}
-    : {};
+  const routeData = import.meta.env.VAR_IS_LOCALE_ENABLED === 'false'
+    ? {}
+    : {lang: getLocale()};
 
   router.navigateByName(RouteNames.NOT_FOUND, routeData);
 });
