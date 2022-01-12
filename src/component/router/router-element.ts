@@ -2,6 +2,7 @@ import {LitElement} from 'lit';
 import {html} from 'lit/static-html.js';
 import {customElement, state} from 'lit/decorators.js';
 import {Match} from 'navigo';
+import {isLocaleEnabled} from '../../config/locale-config';
 import router from '../../router/router';
 import {routes} from '../../router/routes';
 import {RouteType} from '../../data/type';
@@ -17,14 +18,14 @@ export default class RouterElement extends LitElement {
   connectedCallback(): void {
     super.connectedCallback();
 
-    const processedRoutes = import.meta.env.VAR_IS_LOCALE_ENABLED === 'false'
-      ? routes
-      : routes.map(
-        (route: RouteType): RouteType => ({
-          ...route,
-          path: `/:lang${route.path}`,
-        }),
-      );
+    const processedRoutes = isLocaleEnabled
+      ? routes.map(
+          (route: RouteType): RouteType => ({
+            ...route,
+            path: `/:lang${route.path}`,
+          })
+        )
+      : routes;
 
     processedRoutes.forEach(route => {
       router.on({
@@ -48,7 +49,7 @@ export default class RouterElement extends LitElement {
 
   changeRoute(matchedRoute: Match): void {
     const foundRoute = routes.find(
-      route => route.name === matchedRoute.route.name,
+      route => route.name === matchedRoute.route.name
     );
 
     if (!foundRoute) return;
