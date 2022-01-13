@@ -3,11 +3,17 @@ import {customElement} from 'lit/decorators.js';
 
 @customElement('{{kebabCase name}}')
 export class {{pascalCase name}} extends LitElement {
+  static get styles() {
+    return css`
+      :host {
+        display: block;
+      }
+    `;
+  }
+
   render() {
     return html`
-      <div>
-        <h2>{{sentenceCase name}} component</h2>
-      </div>`
-    ;
+      <h2>{{sentenceCase name}} component</h2>
+    `;
   }
 }
