@@ -1,4 +1,4 @@
-import {html, LitElement} from 'lit';
+import {html, css, LitElement} from 'lit';
 import {customElement} from 'lit/decorators.js';
 
 @customElement('{{kebabCase name}}')

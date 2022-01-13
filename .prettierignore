@@ -1,5 +1,5 @@
 .cache
 package-lock.json
-dist/*
+build/*
 node_modules/*
 plop-templates/*
