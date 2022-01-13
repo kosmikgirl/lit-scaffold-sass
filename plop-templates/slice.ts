@@ -1,6 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {PayloadAction} from '@reduxjs/toolkit/dist/createAction';
-import {PageMetadata} from '../../data/type/';
 
 export type {{pascalCase name}}State = {};
 
