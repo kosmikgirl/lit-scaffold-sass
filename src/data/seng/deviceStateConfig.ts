@@ -1,3 +1,5 @@
+import {css} from 'lit';
+
 export enum DeviceState {
   SMALL = 0,
   MEDIUM = 1,
@@ -8,10 +10,10 @@ export enum DeviceState {
 }
 
 export const mediaQueries = {
-  SMALL: '(min-width: 480px)',
-  MEDIUM: '(min-width: 768px)',
-  LARGE: '(min-width: 1024px)',
-  XLARGE: '(min-width: 1200px)',
-  XXLARGE: '(min-width: 1600px)',
-  XXXLARGE: '(min-width: 1920px)',
+  SMALL: css`(min-width: 480px)`,
+  MEDIUM: css`(min-width: 768px)`,
+  LARGE: css`(min-width: 1024px)`,
+  XLARGE: css`(min-width: 1200px)`,
+  XXLARGE: css`(min-width: 1600px)`,
+  XXXLARGE: css`(min-width: 1920px)`,
 };
