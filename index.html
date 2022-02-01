@@ -9,13 +9,21 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-XXXXXX');</script>
     -->
-    <script type="module" src="/src/main.ts"></script>
+    <script type="module" src="/src/root-element/root-element.ts" defer></script>
+
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+    </style>
   </head>
   <body>
     <!-- uncomment this block and update the GTM code to enable Google Tag Manager
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXX"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     -->
-    <lit-scaffold></lit-scaffold>
+    <root-element></root-element>
   </body>
 </html>
