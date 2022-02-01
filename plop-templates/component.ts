@@ -1,15 +1,10 @@
-import {html, css, LitElement} from 'lit';
+import {html, LitElement} from 'lit';
 import {customElement} from 'lit/decorators.js';
+import {styles} from './styles';
 
 @customElement('{{kebabCase name}}')
 export class {{pascalCase name}} extends LitElement {
-  static get styles() {
-    return css`
-      :host {
-        display: block;
-      }
-    `;
-  }
+  static styles = styles;
 
   render() {
     return html`
