@@ -5,7 +5,7 @@ import {RouteData, PageMetadata} from '../../data/type/';
 import store from '../../store/store';
 
 export default abstract class PageElement extends LitElement {
-  private _pageMetadata: PageMetadata = {
+  readonly _pageMetadata: PageMetadata = {
     title: '',
     description: '',
     banner: '',
@@ -13,13 +13,12 @@ export default abstract class PageElement extends LitElement {
     contentType: '',
   };
 
-  constructor(pageMetadata: PageMetadata) {
+  protected constructor(pageMetadata: PageMetadata) {
     super();
     this._pageMetadata = pageMetadata;
   }
 
-  @property({type: Object})
-  routeData: RouteData = {};
+  @property({type: Object}) routeData: RouteData = {};
 
   connectedCallback() {
     super.connectedCallback();

@@ -1,9 +1,12 @@
-import {css, html, LitElement} from 'lit';
+import {html, LitElement} from 'lit';
 import {customElement, property, state, query} from 'lit/decorators.js';
-import imageSizeDirective from '../data/constant/image-size-directive';
+import imageSizeDirective from '../../data/constant/image-size-directive';
+import {styles} from './styles';
 
 @customElement('image-element')
 export class ImageElement extends LitElement {
+  static styles = styles;
+
   @property({type: Array}) imageSet: Array<string> = [];
   @property() alt: string = '';
 
@@ -29,20 +32,6 @@ export class ImageElement extends LitElement {
 
   protected firstUpdated(): void {
     this.lazyLoadObserver.observe(this.$img);
-  }
-
-  static get styles() {
-    return css`
-      picture {
-        display: block;
-      }
-
-      img {
-        width: 100%;
-        height: 100%;
-        display: block;
-      }
-    `;
   }
 
   async loadIntersectedImage(image: IntersectionObserverEntry) {
