@@ -8,6 +8,7 @@ import {imagetools} from 'vite-imagetools';
 import {ViteFaviconsPlugin} from 'vite-plugin-favicon2';
 import {minifyHtml} from 'vite-plugin-html';
 import imageSizeDirective from './src/data/constant/image-size-directive';
+import css from 'rollup-plugin-import-css';
 
 const metaInject = () => {
   return {
@@ -50,6 +51,7 @@ export default defineConfig(({command, mode}) => {
         'process.env.NODE_ENV': JSON.stringify(mode),
         preventAssignment: true,
       }),
+      css(),
       resolve(),
       summary(),
     ],
