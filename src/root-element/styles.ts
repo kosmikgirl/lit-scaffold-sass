@@ -6,7 +6,7 @@ export const styles = css`
     padding: 20px;
     max-width: 60%;
     margin: 0 auto;
-    background: var(--var-background-primary);
-    color: var(--var-foreground-primary);
+    background: var(--color-background-primary);
+    color: var(--color-foreground-primary);
   }
 `;
