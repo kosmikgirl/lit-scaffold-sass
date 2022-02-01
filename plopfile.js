@@ -5,7 +5,7 @@ module.exports = function (plop) {
       {
         type: 'input',
         name: 'name',
-        message: 'Whate is the name of your page (example: `home-page`)?'
+        message: 'What is the name of your page (example: `home-page`)?'
       }
     ],
     actions: [
