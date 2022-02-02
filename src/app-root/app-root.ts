@@ -10,8 +10,8 @@ import '../component/nav-element/nav-element';
 import '../component/image-element/image-element';
 import {styles} from './styles';
 
-@customElement('root-element')
-export class RootElement extends connect(store)(LitElement) {
+@customElement('app-root')
+export class AppRoot extends connect(store)(LitElement) {
   static styles = styles;
 
   @state() private isInitialized = false;
