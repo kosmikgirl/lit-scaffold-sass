@@ -8,7 +8,6 @@ import CatImage from '../asset/image/cat.jpg?webp';
 import '../component/router/router-element/router-element';
 import '../component/nav-element/nav-element';
 import '../component/image-element/image-element';
-import '../asset/style/variables.css';
 import {styles} from './styles';
 
 @customElement('root-element')
