@@ -22,6 +22,7 @@ After cloning run `npm install` and `npm run dev` in the project root to get sta
 ## Commands
 
 - `npm run dev`: start the development server.
+- `npm run dev -- --host 0.0.0.0`: start development server and expose on network
 - `npm run plop` generate empty component file.
 - `npm run build` build app for deployment.
 - `npm run deploy`: build app and deploy to gcp app engine.

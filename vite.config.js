@@ -132,9 +132,6 @@ export default defineConfig(({command, mode}) => {
         }),
       ],
       envPrefix: 'VAR_',
-      server: {
-        host: '0.0.0.0',
-      },
     };
   }
 });
