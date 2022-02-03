@@ -5,8 +5,13 @@ module.exports = function (plop) {
       {
         type: 'input',
         name: 'name',
-        message: 'Whate is the name of your page (example: `home-page`)?'
-      }
+        message: 'What is the name of your page (example: `home-page`)?',
+      },
+      {
+        type: 'confirm',
+        name: 'isAddingLifeCycle',
+        message: 'Do you want to add empty lifecycle methods?',
+      },
     ],
     actions: [
       {
@@ -31,6 +36,11 @@ module.exports = function (plop) {
         type: 'input',
         name: 'name',
         message: 'What is the name of your component (example: `lit-element`)?',
+      },
+      {
+        type: 'confirm',
+        name: 'isAddingLifeCycle',
+        message: 'Do you want to add empty lifecycle methods?',
       },
     ],
     actions: [
