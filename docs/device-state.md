@@ -27,7 +27,7 @@ export class AppRoot extends LitElement {
     deviceStateTracker.addEventListener(DeviceStateEvent.STATE_UPDATE, () => {
       const {state} = deviceStateTracker.currentDeviceState;
 
-      if (state === DeviceState.TABLET_PORTRAIT) {
+      if (state === DeviceState.MEDIUM) {
         // do something at this breakpoint
       }
     });
