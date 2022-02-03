@@ -1,10 +1,13 @@
 import {html, LitElement} from 'lit';
-import {RouteDataParam, RouteNames} from '../data/enum/';
+import {RouteDataParam, RouteNames} from '../../data/enum';
 import {customElement} from 'lit/decorators.js';
-import './router/router-link';
+import {styles} from './styles';
+import '../router/router-link/router-link';
 
 @customElement('nav-element')
 export class NavElement extends LitElement {
+  static styles = styles;
+
   render() {
     return html`<nav>
       <router-link to="/" title="HomePage">Home</router-link>

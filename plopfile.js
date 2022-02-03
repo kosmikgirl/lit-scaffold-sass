@@ -11,8 +11,14 @@ module.exports = function (plop) {
     actions: [
       {
         type: 'add',
-        path: 'src/page/{{dashCase name}}.ts',
+        path: 'src/page/{{dashCase name}}/{{dashCase name}}.ts',
         templateFile: 'plop-templates/page.ts',
+        skipIfExists: true,
+      },
+      {
+        type: 'add',
+        path: 'src/page/{{dashCase name}}/styles.ts',
+        templateFile: 'plop-templates/styles.ts',
         skipIfExists: true,
       },
     ],
@@ -30,8 +36,14 @@ module.exports = function (plop) {
     actions: [
       {
         type: 'add',
-        path: 'src/component/{{dashCase name}}.ts',
+        path: 'src/component/{{dashCase name}}/{{dashCase name}}.ts',
         templateFile: 'plop-templates/component.ts',
+        skipIfExists: true,
+      },
+      {
+        type: 'add',
+        path: 'src/component/{{dashCase name}}/styles.ts',
+        templateFile: 'plop-templates/styles.ts',
         skipIfExists: true,
       },
     ],
