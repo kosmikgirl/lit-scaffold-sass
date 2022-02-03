@@ -17,7 +17,7 @@
   "dependencies": {
     "@lit/localize": "^0.11.1",
     "@reduxjs/toolkit": "^1.6.2",
-    "lit": "^2.0.0",
+    "lit": "^2.1.2",
     "navigo": "^8.11.1",
     "pwa-helpers": "^0.9.1",
     "seng-device-state-tracker": "^1.1.4"
