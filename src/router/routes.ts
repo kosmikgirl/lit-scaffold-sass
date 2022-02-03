@@ -1,9 +1,9 @@
 import {literal} from 'lit/static-html.js';
 import {RouteType} from '../data/type/';
 import {RouteNames, RouteDataParam} from '../data/enum/';
-import '../page/home-page';
-import '../page/about-page';
-import '../page/not-found-page';
+import '../page/home-page/home-page';
+import '../page/about-page/about-page';
+import '../page/not-found-page/not-found-page';
 
 export const routes: ReadonlyArray<RouteType> = [
   {

@@ -1,4 +1,6 @@
-declare module '*.jpg?w=300;500;700;1000;1200;1400&webp';
-declare module '*.png?w=300;500;700;1000;1200;1400&webp';
+declare module '*.jpg';
+declare module '*.png';
 declare module '*.svg';
 declare module '*.webp';
+declare module '*.jpg?webp';
+declare module '*.png?webp';

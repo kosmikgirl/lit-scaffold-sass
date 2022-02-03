@@ -1,33 +1,20 @@
-import {html, css, LitElement} from 'lit';
+import {html, LitElement} from 'lit';
 import {state, customElement} from 'lit/decorators.js';
 import {connect} from 'pwa-helpers';
-import store from './store/store';
-import {AppState, setIsInitialized} from './store/module/app';
-import SEO from './util/seo';
-import './component/router/router-element';
-import './component/nav-element';
-import './component/image-element';
-import CatImage from './asset/image/cat.jpg?webp';
+import store from '../store/store';
+import {AppState, setIsInitialized} from '../store/module/app';
+import SEO from '../util/seo';
+import CatImage from '../asset/image/cat.jpg?webp';
+import '../component/router/router-element/router-element';
+import '../component/nav-element/nav-element';
+import '../component/image-element/image-element';
+import {styles} from './styles';
 
-/*
- * Change rollup.config.js html replacement settings if you rename this file.
- */
+@customElement('app-root')
+export class AppRoot extends connect(store)(LitElement) {
+  static styles = styles;
 
-@customElement('lit-scaffold')
-export class LitScaffold extends connect(store)(LitElement) {
-  static get styles() {
-    return css`
-      :host {
-        display: block;
-        padding: 20px;
-        max-width: 60%;
-        margin: 0 auto;
-      }
-    `;
-  }
-
-  @state()
-  private isInitialized = false;
+  @state() private isInitialized = false;
 
   stateChanged({app: {isInitialized, pageMetadata}}: {app: AppState}) {
     this.isInitialized = isInitialized;

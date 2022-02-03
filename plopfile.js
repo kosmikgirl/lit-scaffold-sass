@@ -5,14 +5,25 @@ module.exports = function (plop) {
       {
         type: 'input',
         name: 'name',
-        message: 'What is the name of your page (example: `home-page`)?'
-      }
+        message: 'What is the name of your page (example: `home-page`)?',
+      },
+      {
+        type: 'confirm',
+        name: 'isAddingLifeCycle',
+        message: 'Do you want to add empty lifecycle methods?',
+      },
     ],
     actions: [
       {
         type: 'add',
-        path: 'src/page/{{dashCase name}}.ts',
+        path: 'src/page/{{dashCase name}}/{{dashCase name}}.ts',
         templateFile: 'plop-templates/page.ts',
+        skipIfExists: true,
+      },
+      {
+        type: 'add',
+        path: 'src/page/{{dashCase name}}/styles.ts',
+        templateFile: 'plop-templates/styles.ts',
         skipIfExists: true,
       },
     ],
@@ -26,12 +37,23 @@ module.exports = function (plop) {
         name: 'name',
         message: 'What is the name of your component (example: `lit-element`)?',
       },
+      {
+        type: 'confirm',
+        name: 'isAddingLifeCycle',
+        message: 'Do you want to add empty lifecycle methods?',
+      },
     ],
     actions: [
       {
         type: 'add',
-        path: 'src/component/{{dashCase name}}.ts',
+        path: 'src/component/{{dashCase name}}/{{dashCase name}}.ts',
         templateFile: 'plop-templates/component.ts',
+        skipIfExists: true,
+      },
+      {
+        type: 'add',
+        path: 'src/component/{{dashCase name}}/styles.ts',
+        templateFile: 'plop-templates/styles.ts',
         skipIfExists: true,
       },
     ],
