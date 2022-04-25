@@ -8,8 +8,6 @@ import {imagetools} from 'vite-imagetools';
 import {ViteFaviconsPlugin} from 'vite-plugin-favicon2';
 import {minifyHtml} from 'vite-plugin-html';
 import imageSizeDirective from './src/data/constant/image-size-directive';
-import postcss from 'rollup-plugin-postcss';
-import litcss from 'rollup-plugin-postcss-lit';
 
 const metaInject = () => {
   return {
@@ -19,30 +17,30 @@ const metaInject = () => {
         {
           tag: 'meta',
           attrs: {
-            charset: 'UTF-8',
-          },
+            charset: 'UTF-8'
+          }
         },
         {
           tag: 'meta',
           attrs: {
             name: 'viewport',
-            content: 'width=device-width, initial-scale=1.0',
-          },
-        },
-      ];
-    },
-  };
+            content: 'width=device-width, initial-scale=1.0'
+          }
+        }
+      ]
+    }
+  }
 };
 
 export default defineConfig(({command, mode}) => {
   const isPwa = process.env.buildType === 'pwa';
 
   isPwa &&
-    console.log(
-      '\x1b[32m',
-      `>> You are running the PWA build process.
+  console.log(
+    '\x1b[32m',
+    `>> You are running the PWA build process.
        >> Your build will containt a service worker to provide the necessary behavior.`
-    );
+  );
 
   const rollupOptions = {
     plugins: [
@@ -110,8 +108,6 @@ export default defineConfig(({command, mode}) => {
             ],
           },
         }),
-        postcss(),
-        litcss(),
         minifyHtml(),
       ],
       build: {
@@ -134,7 +130,6 @@ export default defineConfig(({command, mode}) => {
         imagetools({
           defaultDirectives: [['width', imageSizeDirective.join(';')]],
         }),
-        litcss(),
       ],
       envPrefix: 'VAR_',
     };

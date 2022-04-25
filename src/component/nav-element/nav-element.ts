@@ -1,7 +1,7 @@
 import {html, LitElement} from 'lit';
 import {RouteDataParam, RouteNames} from '../../data/enum';
 import {customElement} from 'lit/decorators.js';
-import styles from './styles.scss';
+import {styles} from './styles';
 import '../router/router-link/router-link';
 
 @customElement('nav-element')
