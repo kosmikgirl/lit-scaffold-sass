@@ -12,21 +12,36 @@ module.exports = function (plop) {
         name: 'isAddingLifeCycle',
         message: 'Do you want to add empty lifecycle methods?',
       },
-    ],
-    actions: [
       {
-        type: 'add',
-        path: 'src/page/{{dashCase name}}/{{dashCase name}}.ts',
-        templateFile: 'plop-templates/page.ts',
-        skipIfExists: true,
+        type: 'confirm',
+        default: false,
+        name: 'useSassStyles',
+        message: 'Do you want to use a sass file?',
       },
-      {
+    ],
+    actions: function (data) {
+      const cssStyleImport = {
         type: 'add',
         path: 'src/page/{{dashCase name}}/styles.ts',
         templateFile: 'plop-templates/styles.ts',
         skipIfExists: true,
-      },
-    ],
+      };
+      const sassStyleImport = {
+        type: 'add',
+        path: 'src/page/{{dashCase name}}/{{dashCase name}}.scss',
+        templateFile: 'plop-templates/styles.scss',
+        skipIfExists: true,
+      };
+      return [
+        {
+          type: 'add',
+          path: 'src/page/{{dashCase name}}/{{dashCase name}}.ts',
+          templateFile: 'plop-templates/page.ts',
+          skipIfExists: true,
+        },
+        data.useSassStyles ? {...sassStyleImport} : {...cssStyleImport},
+      ];
+    },
   });
 
   plop.setGenerator('component', {
@@ -42,21 +57,36 @@ module.exports = function (plop) {
         name: 'isAddingLifeCycle',
         message: 'Do you want to add empty lifecycle methods?',
       },
-    ],
-    actions: [
       {
-        type: 'add',
-        path: 'src/component/{{dashCase name}}/{{dashCase name}}.ts',
-        templateFile: 'plop-templates/component.ts',
-        skipIfExists: true,
+        type: 'confirm',
+        default: false,
+        name: 'useSassStyles',
+        message: 'Do you want to use a sass file?',
       },
-      {
+    ],
+    actions: function (data) {
+      const cssStyleImport = {
         type: 'add',
         path: 'src/component/{{dashCase name}}/styles.ts',
         templateFile: 'plop-templates/styles.ts',
         skipIfExists: true,
-      },
-    ],
+      };
+      const sassStyleImport = {
+        type: 'add',
+        path: 'src/component/{{dashCase name}}/{{dashCase name}}.scss',
+        templateFile: 'plop-templates/styles.scss',
+        skipIfExists: true,
+      };
+      return [
+        {
+          type: 'add',
+          path: 'src/component/{{dashCase name}}/{{dashCase name}}.ts',
+          templateFile: 'plop-templates/component.ts',
+          skipIfExists: true,
+        },
+        data.useSassStyles ? {...sassStyleImport} : {...cssStyleImport},
+      ];
+    },
   });
 
   plop.setGenerator('slice', {
@@ -65,7 +95,7 @@ module.exports = function (plop) {
       {
         type: 'input',
         name: 'name',
-        message: 'What is the name of your slice (example: `database`)?'
+        message: 'What is the name of your slice (example: `database`)?',
       },
     ],
     actions: [

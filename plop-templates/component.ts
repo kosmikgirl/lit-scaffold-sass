@@ -1,10 +1,20 @@
-import {html, LitElement} from 'lit';
 import {customElement} from 'lit/decorators.js';
+{{#if useSassStyles}}
+import {html, LitElement, css} from 'lit';
+import styles from './{{kebabCase name}}.scss';
+{{else}}
+import {html, LitElement} from 'lit';
 import {styles} from './styles';
+{{/if}}
 
 @customElement('{{kebabCase name}}')
 export class {{pascalCase name}} extends LitElement {
+  {{#if useSassStyles}}
+  static styles = css([styles] as unknown as TemplateStringsArray);
+  {{else}}
   static styles = styles;
+  {{/if}}
+
   {{#if isAddingLifeCycle}}
 
   constructor() {
