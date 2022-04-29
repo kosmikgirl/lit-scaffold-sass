@@ -2,7 +2,7 @@ import {customElement} from 'lit/decorators.js';
 import PageElement from '../abstract/page-element';
 {{#if useSassStyles}}
 import {html, css} from 'lit';
-import styles from './{{kebabCase name}}.scss';
+import styles from './{{dashCase name}}.scss';
 {{else}}
 import {html} from 'lit';
 import {styles} from './styles';

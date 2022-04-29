@@ -1,13 +1,13 @@
 import {customElement} from 'lit/decorators.js';
 {{#if useSassStyles}}
 import {html, LitElement, css} from 'lit';
-import styles from './{{kebabCase name}}.scss';
+import styles from './{{dashCase name}}.scss';
 {{else}}
 import {html, LitElement} from 'lit';
 import {styles} from './styles';
 {{/if}}
 
-@customElement('{{kebabCase name}}')
+@customElement('{{dashCase name}}')
 export class {{pascalCase name}} extends LitElement {
   {{#if useSassStyles}}
   static styles = css([styles] as unknown as TemplateStringsArray);

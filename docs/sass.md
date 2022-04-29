@@ -2,7 +2,7 @@
 
 Install SASS following these steps:
 
-- Install packages `npm install rollup-plugin-postcss-lit rollup-plugin-postcss sass -save-dev`.
+- Install packages `npm install --save-dev rollup-plugin-postcss-lit rollup-plugin-postcss sass `.
 - In the `vite.config.js` file:
   -- Add `import litcss from 'rollup-plugin-postcss-lit';` and `import postcss from "rollup-plugin-postcss";`.
   -- Add `postcss({ exclude: "**/*.css", inject: false }), litcss({ include: "**/*.scss", exclude: "**/*.css" }),` as plugins in the `rollupOptions` object.
@@ -16,4 +16,4 @@ Install SASS following these steps:
 
 - To generate pages and components that use sass styles, confirm plop prompt while running `npm run plop`.
 
-  **WARNING: Lit doesn't support SASS natively, so introducing it could lead to unforseen issues**
+  **WARNING: Lit doesn't support SASS natively, so introducing it could lead to unforeseen issues**
