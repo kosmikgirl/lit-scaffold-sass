@@ -16,6 +16,7 @@
     "pwa:sw-generate": "workbox generateSW workbox-config.js"
   },
   "dependencies": {
+    "@easepick/bundle": "^1.2.0",
     "@lit/localize": "^0.11.1",
     "@reduxjs/toolkit": "^1.6.2",
     "lit": "^2.1.2",
@@ -43,7 +44,10 @@
     "prettier": "^2.4.1",
     "rollup": "^2.60.0",
     "rollup-plugin-delete": "^2.0.0",
+    "rollup-plugin-postcss": "^4.0.2",
+    "rollup-plugin-postcss-lit": "^2.0.0",
     "rollup-plugin-summary": "^1.3.0",
+    "sass": "^1.52.2",
     "ts-lit-plugin": "^1.2.1",
     "tslib": "^2.3.1",
     "typescript": "^4.5.2",

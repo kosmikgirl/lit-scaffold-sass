@@ -8,6 +8,8 @@ import {imagetools} from 'vite-imagetools';
 import {ViteFaviconsPlugin} from 'vite-plugin-favicon2';
 import {minifyHtml} from 'vite-plugin-html';
 import imageSizeDirective from './src/data/constant/image-size-directive';
+import litcss from 'rollup-plugin-postcss-lit';
+import postcss from "rollup-plugin-postcss";
 
 const metaInject = () => {
   return {
@@ -52,6 +54,8 @@ export default defineConfig(({command, mode}) => {
       }),
       resolve(),
       summary(),
+      postcss({ exclude: "**/*.css", inject: false }),
+      litcss({ include: "**/*.scss", exclude: "**/*.css" })
     ],
   };
 
@@ -130,6 +134,7 @@ export default defineConfig(({command, mode}) => {
         imagetools({
           defaultDirectives: [['width', imageSizeDirective.join(';')]],
         }),
+        litcss(),
       ],
       envPrefix: 'VAR_',
     };

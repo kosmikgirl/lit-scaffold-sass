@@ -7,4 +7,5 @@ export enum RouteNames {
   HOME = 'home',
   ABOUT = 'about',
   NOT_FOUND = 'not-found',
+  DATE_PICKER = 'date-picker'
 }

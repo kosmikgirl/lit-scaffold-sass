@@ -22,6 +22,12 @@ export class NavElement extends LitElement {
       >
         About
       </router-link>
+      <router-link .to=${{
+        name: RouteNames.DATE_PICKER
+      }} 
+      title="DatePicker">
+        Date Picker
+      </router-link>
       <router-link to="xyz">Not found</router-link>
     </nav>`;
   }

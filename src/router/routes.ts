@@ -4,6 +4,7 @@ import {RouteNames, RouteDataParam} from '../data/enum/';
 import '../page/home-page/home-page';
 import '../page/about-page/about-page';
 import '../page/not-found-page/not-found-page';
+import '../page/date-picker/date-picker';
 
 export const routes: ReadonlyArray<RouteType> = [
   {
@@ -21,4 +22,9 @@ export const routes: ReadonlyArray<RouteType> = [
     path: '/404',
     tag: literal`not-found-page`,
   },
+  {
+    name: RouteNames.DATE_PICKER,
+    path: '/date-picker',
+    tag: literal`date-picker`,
+  }
 ];
